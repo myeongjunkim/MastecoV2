@@ -41,23 +41,13 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          {scrolled ? (
-            <Image
-              src="/images/logos/masteco-logo-invert.png"
-              alt="MASTECO Logo"
-              width={150}
-              height={40}
-              className="h-6 w-auto"
-            />
-          ) : (
-            <Image
-              src="/images/logos/masteco-logo.png"
-              alt="MASTECO Logo"
-              width={150}
-              height={40}
-              className="h-6 w-auto"
-            />
-          )}
+          <Image
+            src="/images/logos/image.png"
+            alt="MASTECO Logo"
+            width={150}
+            height={40}
+            className="h-6 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -153,7 +143,7 @@ const Header = () => {
               : "bg-black bg-opacity-80 text-white"
           } shadow-lg`}
         >
-          <div className="container mx-auto px-4 py-3">
+          <div className="container mx-auto mt-4 px-4 py-3">
             <nav className="flex flex-col space-y-4">
               <Link
                 href="/about"
