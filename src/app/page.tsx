@@ -1,64 +1,55 @@
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPen } from "react-icons/fa";
 import Link from "next/link";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <>
-      {/* 1. 전체화면 히어로 섹션 (슬로건과 배경) */}
-      <div className="relative h-screen w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/images/industry/masteco-building.jpg')`,
-          }}
-        ></div>
-        <div className="absolute inset-0 bg-black opacity-70"></div>
-        <div className="absolute inset-0 flex flex-col justify-center px-16 z-20">
-          <div className="mb-2">
-            <h1 className="text-white text-6xl md:text-8xl font-extrabold tracking-tight drop-shadow-lg">
-              MASTECO
-            </h1>
-          </div>
-          <h2 className="text-blue-400 text-4xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
-            FIRE PROTECTION
-            <br />
-            for SAFE WORLD
-          </h2>
-          <p className="text-blue-200 text-lg md:text-xl max-w-xl mt-4 drop-shadow-md">
-            1982년부터 마스테코는 화재로부터 소중한 생명과 재산을 보호하는
-            최고의 솔루션을 제공하고 있습니다.
-          </p>
-        </div>
-        <div className="absolute top-5 right-10 z-20">
-          <div className="text-white text-xl font-bold drop-shadow-md">
-            MASTECO
-          </div>
-        </div>
-      </div>
+      {/* 히어로 섹션 - 클라이언트 컴포넌트로 분리 */}
+      <HeroSection />
 
       {/* 2. 회사 설명 섹션 - 블루 박스 */}
-      <div className="relative py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
-              About us
+      <div className="relative py-12 bg-white">
+        {/* 상단 타이틀 - 왼쪽 정렬 */}
+        <div className="container mx-auto px-4 md:px-16 mb-8">
+          <div className="flex items-center">
+            <h2 className="text-blue-900 text-xl font-semibold">
+              About MASTECO
+              <span className="inline-block ml-2 w-8 h-0.5 bg-blue-900"></span>
             </h2>
-            <h3 className="text-blue-900 text-3xl font-bold">회사소개</h3>
-            <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
           </div>
+        </div>
 
-          <div className="flex flex-col md:flex-row items-start">
-            <div className="md:w-1/3 pl-4 md:pl-16 pb-10">
-              <h3 className="text-gray-700 text-2xl font-light mb-4">
-                MASTECO 소개
-              </h3>
-            </div>
-            <div className="md:w-2/3 px-4 md:px-16">
-              <div className="bg-blue-900 p-10 rounded-none text-white w-full md:w-4/5 shadow-md">
-                <h2 className="text-3xl font-bold mb-6 text-white">
-                  MASTECO is
-                </h2>
-                <p className="text-lg mb-4 text-blue-50">
+        {/* 콘텐츠 영역 */}
+        <div className="relative">
+          {/* 왼쪽 이미지 & 이진수 배경 */}
+          <div
+            className="absolute inset-0 z-0 opacity-10 bg-repeat"
+            style={{
+              backgroundImage: `url('/images/bg-binary.png')`,
+              backgroundSize: "400px",
+            }}
+          ></div>
+
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-stretch">
+              {/* 왼쪽 영역: 이미지 */}
+              <div className="md:w-1/2 relative mb-10 md:mb-0">
+                <div className="h-full flex items-center">
+                  <div className="relative w-full h-[400px] overflow-hidden">
+                    <img
+                      src="/images/solutions/solution4.png"
+                      alt="MASTECO 기술"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 오른쪽 영역: 파란색 배경의 텍스트 박스 */}
+              <div className="md:w-1/2 bg-blue-900 text-white p-12 flex flex-col justify-center">
+                <h2 className="text-5xl font-bold mb-8">MASTECO is</h2>
+                <p className="text-lg mb-6 text-blue-50">
                   화재로부터 안전한 세상을 만들기 위해 사회적 책임감을 바탕으로
                   소방설비 산업에 기여하는 전문 기업입니다.
                 </p>
@@ -66,6 +57,10 @@ export default function Home() {
                   1982년부터 마스테코는 엄격한 산업 표준에 따라 자체 시설에서
                   모든 제품을 설계, 생산, 테스트하며, 국내외 승인 기관의 인증을
                   획득한 안전한 소방 솔루션을 제공합니다.
+                </p>
+                <p className="text-blue-50">
+                  소방 설비의 품질과 신뢰성에 집중하여 고객의 안전을 최우선으로
+                  생각합니다.
                 </p>
               </div>
             </div>
@@ -297,13 +292,59 @@ export default function Home() {
       </div>
 
       {/* 5. 산업 분야 배너 섹션 */}
-      <div className="relative bg-black">
-        <div className="h-[300px] flex items-center justify-start">
-          <div className="container px-4 md:px-16 relative z-10">
-            <h2 className="text-blue-400 text-4xl font-bold mb-3 drop-shadow-md">
-              MASTECO INDUSTRY
-            </h2>
-            <div className="w-20 h-1 bg-blue-400 mt-4"></div>
+      <div className="relative">
+        {/* 상단 타이틀 */}
+        <div className="bg-white py-6 border-b border-gray-200">
+          <div className="container mx-auto px-4 md:px-16">
+            <div className="flex items-baseline">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
+                MASTECO <span className="font-black">INDUSTRY</span>
+              </h2>
+              <span className="text-sm text-gray-600 ml-2">
+                마스테코 산업분야
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 메인 이미지 섹션 */}
+        <div className="h-[400px]">
+          {/* 이미지 배경 */}
+          <div className="relative h-full overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('/images/solutions/solution1.png')`,
+              }}
+            ></div>
+            <div className="absolute inset-0 bg-black opacity-30"></div>
+            <div className="absolute bottom-0 left-0 p-8 z-10">
+              <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+                소방설비
+              </h3>
+            </div>
+
+            {/* Read More 링크 */}
+            <div className="absolute bottom-0 right-0 p-8 z-10">
+              <Link
+                href="/industry/aerospace"
+                className="flex items-center text-white font-semibold hover:text-blue-300 transition-colors"
+              >
+                <span className="mr-2">Read More</span>
+                <span className="border-b border-white w-10"></span>
+              </Link>
+            </div>
+
+            {/* 문의하기 버튼 */}
+            <div className="absolute right-0 top-0 p-4 z-10">
+              <Link
+                href="/contact"
+                className="bg-white text-blue-900 py-2 px-4 flex items-center font-bold shadow-md hover:bg-gray-100 transition-colors"
+              >
+                <FaPen className="mr-2" />
+                문의하기
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -332,17 +373,35 @@ export default function Home() {
             <div className="md:w-2/3 px-4 md:px-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
                 <div>
-                  <div className="bg-black h-52 flex items-center justify-center">
-                    <h3 className="text-blue-400 text-xl font-bold">
-                      공지사항 이미지 1
-                    </h3>
+                  <div className="bg-black h-52 relative overflow-hidden group">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/solutions/solution1.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-4 z-10">
+                      <h3 className="text-white text-xl font-bold drop-shadow-lg">
+                        최신 소방 기술 도입
+                      </h3>
+                    </div>
                   </div>
                 </div>
                 <div>
-                  <div className="bg-black h-52 flex items-center justify-center">
-                    <h3 className="text-blue-400 text-xl font-bold">
-                      공지사항 이미지 2
-                    </h3>
+                  <div className="bg-black h-52 relative overflow-hidden group">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/solutions/solution2.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-4 z-10">
+                      <h3 className="text-white text-xl font-bold drop-shadow-lg">
+                        품질 인증 획득
+                      </h3>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -395,8 +454,21 @@ export default function Home() {
       </div>
 
       {/* 7. 채용 정보 섹션 */}
-      <div className="relative bg-blue-900 py-20">
-        <div className="container mx-auto px-4 text-center">
+      <div className="relative py-20">
+        {/* 배경 이미지 */}
+        <div className="absolute inset-0 z-0">
+          <div className="relative w-full h-full">
+            <div
+              style={{ backgroundImage: "url('/images/news/recruit.png')" }}
+              role="img"
+              aria-label="채용 배경 이미지"
+              className="w-full h-full bg-cover bg-center"
+            />
+            <div className="absolute inset-0 bg-blue-900 opacity-70"></div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mb-10">
             <h2 className="text-blue-200 text-sm font-light uppercase tracking-wider mb-2">
               Join Us
@@ -405,13 +477,13 @@ export default function Home() {
             <div className="w-20 h-1 bg-white mx-auto mt-4"></div>
           </div>
 
-          <p className="text-blue-50 text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
-            마스테코와 함께 성장하고 혁신할 인재를 찾고 있습니다. 화재로부터
-            안전한 세상을 만들기 위한 여정에 동참하세요.
+          <p className="text-white text-lg mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+            마스테코와 함께 성장하고 혁신할 인재를 찾고 있습니다. <br />
+            화재로부터 안전한 세상을 만들기 위한 여정에 동참하세요.
           </p>
           <Link
             href="/careers"
-            className="inline-block bg-white text-blue-900 hover:bg-blue-50 py-3 px-8 rounded-md transition duration-300 font-bold shadow-md"
+            className="inline-block bg-white text-blue-900 hover:bg-blue-50 py-3 px-8 rounded-md transition duration-300 font-bold shadow-lg"
           >
             채용 정보 보기
           </Link>
