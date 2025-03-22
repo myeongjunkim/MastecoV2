@@ -235,7 +235,7 @@ export default function HeroSection() {
               className="inline-block whitespace-nowrap"
               style={fadeInUpDelay1}
             >
-              <h1 className="text-white text-5xl md:text-6xl lg:text-9xl font-bold drop-shadow-lg inline-block">
+              <h1 className="text-white text-5xl md:text-6xl lg:text-9xl font-extrabold drop-shadow-lg inline-block">
                 <span style={marqueeAnimation}>
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
