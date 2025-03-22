@@ -137,6 +137,13 @@ export default function HeroSection() {
           }
         }
 
+        /* 전역 폰트 설정 */
+        html,
+        body {
+          font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR",
+            sans-serif;
+        }
+
         .slide-transition {
           transition: transform 0.8s ease-in-out;
         }
@@ -169,62 +176,23 @@ export default function HeroSection() {
           background-repeat: no-repeat;
         }
 
-        /* 화면 비율에 따른 슬로건 텍스트 크기 조정 */
-        .slogan-text {
-          font-size: 2.5rem;
-          font-weight: 800;
-          line-height: 1.1;
-        }
-
-        @media (min-width: 640px) {
-          .slogan-text {
-            font-size: 3.5rem;
-          }
-        }
-
-        @media (min-width: 768px) {
-          .slogan-text {
-            font-size: 4.5rem;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .slogan-text {
-            font-size: 5.5rem;
-          }
-        }
-
-        @media (min-width: 1280px) {
-          .slogan-text {
-            font-size: 6rem;
-          }
-        }
-
         /* 화면 비율에 특화된 미디어 쿼리 */
         @media (min-aspect-ratio: 16/9) {
-          .slogan-text {
-            font-size: 5.5rem;
-          }
+          /* Removed slogan-text class rules */
         }
 
         @media (min-aspect-ratio: 16/10) {
-          .slogan-text {
-            font-size: 6rem;
-          }
+          /* Removed slogan-text class rules */
         }
 
         /* 아주 넓은 화면에 대응 */
         @media (min-width: 1600px) {
-          .slogan-text {
-            font-size: 6.5rem;
-          }
+          /* Removed slogan-text class rules */
         }
 
         /* 아주 좁은 화면 대응 */
         @media (max-width: 480px) {
-          .slogan-text {
-            font-size: 2rem;
-          }
+          /* Removed slogan-text class rules */
         }
       `}</style>
 
@@ -267,7 +235,7 @@ export default function HeroSection() {
               className="inline-block whitespace-nowrap"
               style={fadeInUpDelay1}
             >
-              <h1 className="text-white slogan-text tracking-tight drop-shadow-lg leading-tight inline-block">
+              <h1 className="text-white text-5xl font-bold drop-shadow-lg inline-block">
                 <span style={marqueeAnimation}>
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
