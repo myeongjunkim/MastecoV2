@@ -14,6 +14,8 @@ export default function HeroSection() {
   // 현재 표시 중인 슬라이드 인덱스
   const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  // 애니메이션 리셋을 위한 키 상태 추가
+  const [animationKey, setAnimationKey] = useState(0);
 
   // 배경 이미지 배열
   const backgroundImages = [
@@ -54,7 +56,7 @@ export default function HeroSection() {
   useEffect(() => {
     const autoSlideInterval = setInterval(() => {
       nextSlide();
-    }, 3000); // 3초 간격으로 다음 슬라이드로 전환
+    }, 5000); // 5초 간격으로 다음 슬라이드로 전환
 
     return () => {
       clearInterval(autoSlideInterval); // 컴포넌트 언마운트 시 인터벌 정리
@@ -66,16 +68,20 @@ export default function HeroSection() {
     setCurrentSlide((prev) =>
       prev === 0 ? backgroundImages.length - 1 : prev - 1
     );
+    // 애니메이션 리셋
+    setAnimationKey((prev) => prev + 1);
   };
 
   // 다음 슬라이드로 이동
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % backgroundImages.length);
+    // 애니메이션 리셋
+    setAnimationKey((prev) => prev + 1);
   };
 
   // 애니메이션 스타일 정의
   const marqueeAnimation: CSSProperties = {
-    animation: "marquee 80s linear infinite",
+    animation: "marquee 120s linear infinite",
     whiteSpace: "nowrap",
     display: "inline-block",
     paddingLeft: "0",
@@ -85,13 +91,13 @@ export default function HeroSection() {
   const fadeInUpDelay1: CSSProperties = {
     opacity: 0,
     transform: "translateY(40px)",
-    animation: "fadeInUp 1s ease forwards 0.3s",
+    animation: "fadeInUp 0.8s ease forwards 0.2s",
   };
 
   const fadeInUpDelay2: CSSProperties = {
     opacity: 0,
     transform: "translateY(40px)",
-    animation: "fadeInUp 0.8s ease forwards 0.6s",
+    animation: "fadeInUp 0.8s ease forwards 0.5s",
   };
 
   // 배경 이미지 확대 애니메이션 스타일
@@ -132,7 +138,7 @@ export default function HeroSection() {
         }
 
         .slide-transition {
-          transition: opacity 1s ease-in-out;
+          transition: transform 0.8s ease-in-out;
         }
 
         .marquee-container {
@@ -140,6 +146,85 @@ export default function HeroSection() {
           width: 100%;
           overflow: hidden;
           white-space: nowrap;
+        }
+
+        .carousel-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .carousel-track {
+          display: flex;
+          width: 300%; /* 3x the width for 3 slides */
+          height: 100%;
+          transition: transform 0.8s ease-in-out;
+        }
+
+        .carousel-slide {
+          flex: 1;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        /* 화면 비율에 따른 슬로건 텍스트 크기 조정 */
+        .slogan-text {
+          font-size: 2.5rem;
+          font-weight: 800;
+          line-height: 1.1;
+        }
+
+        @media (min-width: 640px) {
+          .slogan-text {
+            font-size: 3.5rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .slogan-text {
+            font-size: 4.5rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .slogan-text {
+            font-size: 5.5rem;
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .slogan-text {
+            font-size: 6rem;
+          }
+        }
+
+        /* 화면 비율에 특화된 미디어 쿼리 */
+        @media (min-aspect-ratio: 16/9) {
+          .slogan-text {
+            font-size: 5.5rem;
+          }
+        }
+
+        @media (min-aspect-ratio: 16/10) {
+          .slogan-text {
+            font-size: 6rem;
+          }
+        }
+
+        /* 아주 넓은 화면에 대응 */
+        @media (min-width: 1600px) {
+          .slogan-text {
+            font-size: 6.5rem;
+          }
+        }
+
+        /* 아주 좁은 화면 대응 */
+        @media (max-width: 480px) {
+          .slogan-text {
+            font-size: 2rem;
+          }
         }
       `}</style>
 
@@ -149,30 +234,40 @@ export default function HeroSection() {
         ref={sectionRef}
       >
         {/* 배경 이미지 캐러셀 */}
-        {backgroundImages.map((image, index) => (
+        <div className="carousel-container absolute inset-0">
           <div
-            key={index}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat slide-transition ${
-              currentSlide === index ? "opacity-100" : "opacity-0"
-            }`}
+            className="carousel-track"
             style={{
-              backgroundImage: `url('${image}')`,
-              ...(currentSlide === index ? zoomBackground : {}),
+              transform: `translateX(-${
+                currentSlide * (100 / backgroundImages.length)
+              }%)`,
             }}
-          ></div>
-        ))}
+          >
+            {backgroundImages.map((image, index) => (
+              <div
+                key={index}
+                className="carousel-slide"
+                style={{
+                  backgroundImage: `url('${image}')`,
+                  ...(currentSlide === index ? zoomBackground : {}),
+                }}
+              ></div>
+            ))}
+          </div>
+        </div>
 
         {/* 어두운 오버레이 */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         {/* 중앙 슬로건 및 회사 소개 */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-20 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center">
           <div className="marquee-container mb-6 w-full overflow-hidden">
             <div
+              key={`slogan-${animationKey}`}
               className="inline-block whitespace-nowrap"
               style={fadeInUpDelay1}
             >
-              <h1 className="text-white text-6xl md:text-8xl font-extrabold tracking-tight drop-shadow-lg leading-tight inline-block">
+              <h1 className="text-white slogan-text tracking-tight drop-shadow-lg leading-tight inline-block">
                 <span style={marqueeAnimation}>
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
@@ -183,6 +278,7 @@ export default function HeroSection() {
             </div>
           </div>
           <p
+            key={`intro-${animationKey}`}
             className="text-blue-200 text-lg md:text-xl max-w-2xl mt-2 drop-shadow-md leading-relaxed tracking-normal md:tracking-wide text-center mx-auto"
             style={fadeInUpDelay2}
           >
@@ -240,27 +336,27 @@ export default function HeroSection() {
       </div>
 
       {/* 고정된 문의하기 버튼 그룹 */}
-      <div className="fixed bottom-10 right-10 z-50 flex flex-col">
+      <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
         <Link
           href="/contact"
-          className="flex flex-col items-center justify-center bg-blue-600 text-white w-20 h-20 shadow-lg"
+          className="flex flex-col items-center justify-center bg-blue-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
         >
-          <FaPhone className="mb-3 text-xl" />
-          <span className="text-sm font-medium">문의하기</span>
+          <FaPhone className="mb-2 md:mb-3 text-lg md:text-xl" />
+          <span className="text-xs md:text-sm font-medium">문의하기</span>
         </Link>
         <Link
           href="/contact/email"
-          className="flex flex-col items-center justify-center bg-blue-800 text-white w-20 h-20 shadow-lg"
+          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
         >
-          <FaEnvelope className="mb-3 text-xl" />
-          <span className="text-sm font-medium">뉴스레터</span>
+          <FaEnvelope className="mb-2 md:mb-3 text-lg md:text-xl" />
+          <span className="text-xs md:text-sm font-medium">뉴스레터</span>
         </Link>
         <Link
           href="/contact/chat"
-          className="flex items-center justify-center bg-yellow-400 text-yellow-900 w-20 h-20 shadow-lg"
+          className="flex items-center justify-center bg-yellow-400 text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg"
         >
           <Image
-            src="/images/news/kakaoLogo.png"
+            src="/images/news/kakaotalk.svg"
             alt="카카오톡"
             width={20}
             height={20}

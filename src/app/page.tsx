@@ -1,10 +1,67 @@
+"use client";
+
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPen } from "react-icons/fa";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
+import { useEffect } from "react";
 
 export default function Home() {
+  // Intersection Observer를 사용하여 스크롤 애니메이션 적용
+  useEffect(() => {
+    const fadeElements = document.querySelectorAll(".fade-in-element");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 요소에 데이터 인덱스 속성 추가 (이미 있으면 그 값 사용)
+            const element = entry.target as HTMLElement;
+            const dataIndex =
+              element.dataset.fadeIndex ||
+              element.getAttribute("data-fade-index");
+            const delay = dataIndex ? parseInt(dataIndex) * 0.15 : 0;
+
+            // 지연 시간 적용
+            setTimeout(() => {
+              element.classList.add("fade-in");
+            }, delay * 1000);
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    // 각 요소에 인덱스를 부여
+    fadeElements.forEach((element, index) => {
+      (element as HTMLElement).dataset.fadeIndex = index.toString();
+      observer.observe(element);
+    });
+
+    return () => {
+      fadeElements.forEach((element) => {
+        observer.unobserve(element);
+      });
+    };
+  }, []);
+
   return (
     <>
+      <style jsx global>{`
+        .fade-in-element {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+          will-change: opacity, transform;
+        }
+
+        .fade-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
+
       {/* 히어로 섹션 - 클라이언트 컴포넌트로 분리 */}
       <HeroSection />
 
@@ -71,7 +128,10 @@ export default function Home() {
       {/* 3. 바둑판식 이미지와 솔루션 설명 섹션 */}
       <div className="relative py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
+          <div
+            className="mb-16 text-center fade-in-element"
+            data-fade-index="0"
+          >
             <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
               Our Solutions
             </h2>
@@ -81,11 +141,11 @@ export default function Home() {
             <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
           </div>
 
-          <div className="overflow-hidden border border-gray-200">
+          <div className="overflow-hidden">
             {/* 3-1. 첫 번째 솔루션 섹션 */}
-            <div className="border-b border-gray-200">
+            <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 md:border-r border-gray-200">
+                <div className="md:w-1/2 fade-in-element" data-fade-index="1">
                   <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -101,7 +161,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="md:w-1/2 flex items-center bg-white">
+                <div
+                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  data-fade-index="2"
+                >
                   <div className="p-8 md:p-16">
                     <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       수계 소화설비
@@ -113,9 +176,12 @@ export default function Home() {
                     </p>
                     <Link
                       href="/products/water-based"
-                      className="text-blue-700 font-semibold hover:text-blue-500"
+                      className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      자세히 보기 →
+                      <span>View</span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -123,9 +189,9 @@ export default function Home() {
             </div>
 
             {/* 3-2. 두 번째 솔루션 섹션 */}
-            <div className="border-b border-gray-200">
+            <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 md:border-l border-gray-200">
+                <div className="md:w-1/2 fade-in-element" data-fade-index="3">
                   <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -141,7 +207,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="md:w-1/2 flex items-center bg-white">
+                <div
+                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  data-fade-index="4"
+                >
                   <div className="p-8 md:p-16">
                     <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       가스계 소화설비
@@ -153,9 +222,12 @@ export default function Home() {
                     </p>
                     <Link
                       href="/products/gaseous"
-                      className="text-blue-700 font-semibold hover:text-blue-500"
+                      className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      자세히 보기 →
+                      <span>View</span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -163,9 +235,9 @@ export default function Home() {
             </div>
 
             {/* 3-3. 세 번째 솔루션 섹션 */}
-            <div className="border-b border-gray-200">
+            <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 md:border-r border-gray-200">
+                <div className="md:w-1/2 fade-in-element" data-fade-index="5">
                   <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -181,7 +253,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="md:w-1/2 flex items-center bg-white">
+                <div
+                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  data-fade-index="6"
+                >
                   <div className="p-8 md:p-16">
                     <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       맞춤형 소방 솔루션
@@ -192,9 +267,12 @@ export default function Home() {
                     </p>
                     <Link
                       href="/products/custom"
-                      className="text-blue-700 font-semibold hover:text-blue-500"
+                      className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      자세히 보기 →
+                      <span>View</span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -204,7 +282,7 @@ export default function Home() {
             {/* 3-4. 네 번째 솔루션 섹션 (추가) */}
             <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 md:border-l border-gray-200">
+                <div className="md:w-1/2 fade-in-element" data-fade-index="7">
                   <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -220,7 +298,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="md:w-1/2 flex items-center bg-white">
+                <div
+                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  data-fade-index="8"
+                >
                   <div className="p-8 md:p-16">
                     <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       설계 및 컨설팅
@@ -232,9 +313,12 @@ export default function Home() {
                     </p>
                     <Link
                       href="/products/consulting"
-                      className="text-blue-700 font-semibold hover:text-blue-500"
+                      className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      자세히 보기 →
+                      <span>View</span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -283,9 +367,12 @@ export default function Home() {
                 </p>
                 <Link
                   href="/industry"
-                  className="text-blue-700 font-semibold hover:text-blue-500"
+                  className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                 >
-                  자세히 보기 →
+                  <span>View</span>
+                  <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
+                    <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                  </div>
                 </Link>
               </div>
             </div>
