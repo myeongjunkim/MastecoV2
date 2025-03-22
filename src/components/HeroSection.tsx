@@ -22,6 +22,11 @@ export default function HeroSection() {
     animation: "fadeInUp 0.8s ease forwards 0.6s",
   };
 
+  // 배경 이미지 확대 애니메이션 스타일
+  const zoomBackground: CSSProperties = {
+    animation: "zoomBackground 10s cubic-bezier(0.19, 1, 0.22, 1) forwards",
+  };
+
   return (
     <>
       <style jsx global>{`
@@ -35,6 +40,15 @@ export default function HeroSection() {
             transform: translateY(0);
           }
         }
+
+        @keyframes zoomBackground {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.3);
+          }
+        }
       `}</style>
 
       {/* 전체화면 히어로 섹션 (슬로건과 배경) */}
@@ -43,6 +57,7 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/images/industry/masteco-building.jpg')`,
+            ...zoomBackground,
           }}
         ></div>
         <div className="absolute inset-0 bg-black opacity-70"></div>

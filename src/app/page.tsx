@@ -81,160 +81,162 @@ export default function Home() {
             <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
           </div>
 
-          {/* 3-1. 첫 번째 솔루션 섹션 */}
-          <div className="mb-16">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2">
-                <div className="h-[400px] relative overflow-hidden group">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
-                    style={{
-                      backgroundImage: `url('/images/industry/Visual 01.png')`,
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                  <div className="absolute bottom-0 left-0 p-6 z-10">
-                    <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+          <div className="overflow-hidden border border-gray-200">
+            {/* 3-1. 첫 번째 솔루션 섹션 */}
+            <div className="border-b border-gray-200">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2 md:border-r border-gray-200">
+                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/industry/Visual 01.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-6 z-10">
+                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+                        수계 소화설비
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-1/2 flex items-center bg-white">
+                  <div className="p-8 md:p-16">
+                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       수계 소화설비
-                    </h3>
+                    </h2>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      스프링클러 헤드, 스테인리스 스틸 플렉시블 호스 및 피팅,
+                      알람 체크 밸브, 프리액션 밸브, 델류지 밸브 등 다양한 수계
+                      소화설비 솔루션을 제공합니다.
+                    </p>
+                    <Link
+                      href="/products/water-based"
+                      className="text-blue-700 font-semibold hover:text-blue-500"
+                    >
+                      자세히 보기 →
+                    </Link>
                   </div>
                 </div>
               </div>
-              <div className="md:w-1/2 flex items-center bg-white">
-                <div className="p-8 md:p-16">
-                  <h2 className="text-blue-900 text-2xl font-bold mb-6">
-                    수계 소화설비
-                  </h2>
-                  <p className="text-gray-700 mb-4 leading-relaxed">
-                    스프링클러 헤드, 스테인리스 스틸 플렉시블 호스 및 피팅, 알람
-                    체크 밸브, 프리액션 밸브, 델류지 밸브 등 다양한 수계
-                    소화설비 솔루션을 제공합니다.
-                  </p>
-                  <Link
-                    href="/products/water-based"
-                    className="text-blue-700 font-semibold hover:text-blue-500"
-                  >
-                    자세히 보기 →
-                  </Link>
-                </div>
-              </div>
             </div>
-          </div>
 
-          {/* 3-2. 두 번째 솔루션 섹션 */}
-          <div className="mb-16">
-            <div className="flex flex-col md:flex-row-reverse">
-              <div className="md:w-1/2">
-                <div className="h-[400px] relative overflow-hidden group">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
-                    style={{
-                      backgroundImage: `url('/images/industry/Visual 02.png')`,
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                  <div className="absolute bottom-0 left-0 p-6 z-10">
-                    <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+            {/* 3-2. 두 번째 솔루션 섹션 */}
+            <div className="border-b border-gray-200">
+              <div className="flex flex-col md:flex-row-reverse">
+                <div className="md:w-1/2 md:border-l border-gray-200">
+                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/industry/Visual 02.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-6 z-10">
+                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+                        가스계 소화설비
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-1/2 flex items-center bg-white">
+                  <div className="p-8 md:p-16">
+                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       가스계 소화설비
-                    </h3>
+                    </h2>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      FIRESAFE, 주방 자동 소화장치, 캐비닛형, 모듈형 자동
+                      소화장치, FM-200 피스톤 플로우 시스템 등 첨단 가스계
+                      소화설비를 제공합니다.
+                    </p>
+                    <Link
+                      href="/products/gaseous"
+                      className="text-blue-700 font-semibold hover:text-blue-500"
+                    >
+                      자세히 보기 →
+                    </Link>
                   </div>
                 </div>
               </div>
-              <div className="md:w-1/2 flex items-center bg-white">
-                <div className="p-8 md:p-16">
-                  <h2 className="text-blue-900 text-2xl font-bold mb-6">
-                    가스계 소화설비
-                  </h2>
-                  <p className="text-gray-700 mb-4 leading-relaxed">
-                    FIRESAFE, 주방 자동 소화장치, 캐비닛형, 모듈형 자동
-                    소화장치, FM-200 피스톤 플로우 시스템 등 첨단 가스계
-                    소화설비를 제공합니다.
-                  </p>
-                  <Link
-                    href="/products/gaseous"
-                    className="text-blue-700 font-semibold hover:text-blue-500"
-                  >
-                    자세히 보기 →
-                  </Link>
-                </div>
-              </div>
             </div>
-          </div>
 
-          {/* 3-3. 세 번째 솔루션 섹션 */}
-          <div className="mb-16">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2">
-                <div className="h-[400px] relative overflow-hidden group">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
-                    style={{
-                      backgroundImage: `url('/images/industry/Visual 03.png')`,
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                  <div className="absolute bottom-0 left-0 p-6 z-10">
-                    <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+            {/* 3-3. 세 번째 솔루션 섹션 */}
+            <div className="border-b border-gray-200">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2 md:border-r border-gray-200">
+                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/industry/Visual 03.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-6 z-10">
+                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+                        맞춤형 소방 솔루션
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-1/2 flex items-center bg-white">
+                  <div className="p-8 md:p-16">
+                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
                       맞춤형 소방 솔루션
-                    </h3>
+                    </h2>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      고객의 산업 및 적용 분야별 특정 요구사항을 충족시키기 위해
+                      설계된 맞춤형 소방 솔루션을 제공합니다.
+                    </p>
+                    <Link
+                      href="/products/custom"
+                      className="text-blue-700 font-semibold hover:text-blue-500"
+                    >
+                      자세히 보기 →
+                    </Link>
                   </div>
-                </div>
-              </div>
-              <div className="md:w-1/2 flex items-center bg-white">
-                <div className="p-8 md:p-16">
-                  <h2 className="text-blue-900 text-2xl font-bold mb-6">
-                    맞춤형 소방 솔루션
-                  </h2>
-                  <p className="text-gray-700 mb-4 leading-relaxed">
-                    고객의 산업 및 적용 분야별 특정 요구사항을 충족시키기 위해
-                    설계된 맞춤형 소방 솔루션을 제공합니다.
-                  </p>
-                  <Link
-                    href="/products/custom"
-                    className="text-blue-700 font-semibold hover:text-blue-500"
-                  >
-                    자세히 보기 →
-                  </Link>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* 3-4. 네 번째 솔루션 섹션 (추가) */}
-          <div>
-            <div className="flex flex-col md:flex-row-reverse">
-              <div className="md:w-1/2">
-                <div className="h-[400px] relative overflow-hidden group">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
-                    style={{
-                      backgroundImage: `url('/images/industry/Visual 04.png')`,
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                  <div className="absolute bottom-0 left-0 p-6 z-10">
-                    <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                      설계 및 컨설팅
-                    </h3>
+            {/* 3-4. 네 번째 솔루션 섹션 (추가) */}
+            <div>
+              <div className="flex flex-col md:flex-row-reverse">
+                <div className="md:w-1/2 md:border-l border-gray-200">
+                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url('/images/industry/Visual 04.png')`,
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
+                    <div className="absolute bottom-0 left-0 p-6 z-10">
+                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
+                        설계 및 컨설팅
+                      </h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="md:w-1/2 flex items-center bg-white">
-                <div className="p-8 md:p-16">
-                  <h2 className="text-blue-900 text-2xl font-bold mb-6">
-                    설계 및 컨설팅
-                  </h2>
-                  <p className="text-gray-700 mb-4 leading-relaxed">
-                    마스테코는 소방 시스템 설계부터 설치, 유지보수까지
-                    소방설비의 전체 수명 주기에 걸친 전문적인 컨설팅 서비스를
-                    제공합니다.
-                  </p>
-                  <Link
-                    href="/products/consulting"
-                    className="text-blue-700 font-semibold hover:text-blue-500"
-                  >
-                    자세히 보기 →
-                  </Link>
+                <div className="md:w-1/2 flex items-center bg-white">
+                  <div className="p-8 md:p-16">
+                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                      설계 및 컨설팅
+                    </h2>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      마스테코는 소방 시스템 설계부터 설치, 유지보수까지
+                      소방설비의 전체 수명 주기에 걸친 전문적인 컨설팅 서비스를
+                      제공합니다.
+                    </p>
+                    <Link
+                      href="/products/consulting"
+                      className="text-blue-700 font-semibold hover:text-blue-500"
+                    >
+                      자세히 보기 →
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -255,7 +257,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row-reverse">
             <div className="md:w-1/2">
-              <div className="h-[400px] relative overflow-hidden group">
+              <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                   style={{
@@ -310,9 +312,9 @@ export default function Home() {
         {/* 메인 이미지 섹션 */}
         <div className="h-[400px]">
           {/* 이미지 배경 */}
-          <div className="relative h-full overflow-hidden">
+          <div className="relative h-full overflow-hidden border-2 border-transparent hover:border-red-600 transition-colors duration-300">
             <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 hover:scale-105"
               style={{
                 backgroundImage: `url('/images/solutions/solution1.png')`,
               }}
@@ -373,7 +375,7 @@ export default function Home() {
             <div className="md:w-2/3 px-4 md:px-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
                 <div>
-                  <div className="bg-black h-52 relative overflow-hidden group">
+                  <div className="bg-black h-52 relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -389,7 +391,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <div className="bg-black h-52 relative overflow-hidden group">
+                  <div className="bg-black h-52 relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
