@@ -81,7 +81,7 @@ export default function HeroSection() {
 
   // 애니메이션 스타일 정의
   const marqueeAnimation: CSSProperties = {
-    animation: "marquee 120s linear infinite",
+    animation: "marquee 100s linear infinite",
     whiteSpace: "nowrap",
     display: "inline-block",
     paddingLeft: "0",
@@ -235,7 +235,7 @@ export default function HeroSection() {
               className="inline-block whitespace-nowrap"
               style={fadeInUpDelay1}
             >
-              <h1 className="text-white text-5xl md:text-6xl lg:text-8xl font-bold drop-shadow-lg inline-block">
+              <h1 className="text-white text-5xl md:text-6xl lg:text-9xl font-bold drop-shadow-lg inline-block">
                 <span style={marqueeAnimation}>
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
                   {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
