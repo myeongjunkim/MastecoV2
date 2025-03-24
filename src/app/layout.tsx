@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Nanum_Gothic } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/components/layout/MainLayout";
 
-const nanumGothic = Nanum_Gothic({
+const notoSans = Noto_Sans({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-nanum-gothic",
+  variable: "--font-noto-sans",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={nanumGothic.variable}>
+    <html lang="en" className={notoSans.variable}>
       <body className="antialiased">
         <MainLayout>{children}</MainLayout>
       </body>

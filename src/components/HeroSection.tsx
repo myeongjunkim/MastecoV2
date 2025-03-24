@@ -207,8 +207,7 @@ export default function HeroSection() {
         /* 전역 폰트 설정 */
         html,
         body {
-          font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo",
-            sans-serif;
+          font-family: "Noto Sans", sans-serif;
         }
 
         .slide-transition {

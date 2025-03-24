@@ -22,6 +22,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-nanum-gothic), "Nanum Gothic", "Malgun Gothic",
-    "Apple SD Gothic Neo", sans-serif;
+  font-family: var(--font-noto-sans), "Noto Sans", sans-serif;
 }
