@@ -113,7 +113,7 @@ const Header = () => {
                       <Link
                         key={subindex}
                         href={subitem.path}
-                        className="block px-4 py-2 hover:bg-[rgba(210,60,60,0.95)] transition-colors"
+                        className="block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors"
                       >
                         {subitem.title}
                       </Link>
