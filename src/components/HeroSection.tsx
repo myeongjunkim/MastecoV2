@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useState, useEffect, useRef } from "react";
+import { CSSProperties, useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,6 +16,8 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   // 애니메이션 리셋을 위한 키 상태 추가
   const [animationKey, setAnimationKey] = useState(0);
+  // 트랜지션 상태 추가
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // 배경 이미지 배열
   const backgroundImages = [
@@ -30,6 +32,72 @@ export default function HeroSection() {
     "FIRE PROTECTION FOR SAFE WORLD",
     "FIRE PROTECTION FOR SAFE WORLD",
   ];
+
+  // 무한 슬라이드를 위한 슬라이드 배열 생성
+  const allSlides = [
+    backgroundImages[backgroundImages.length - 1], // 마지막 슬라이드를 첫 번째로 복제
+    ...backgroundImages,
+    backgroundImages[0], // 첫 번째 슬라이드를 마지막으로 복제
+  ];
+
+  // 무한 슬라이드를 위한 슬로건 배열 생성
+  const allSlogans = [
+    sloganTexts[sloganTexts.length - 1],
+    ...sloganTexts,
+    sloganTexts[0],
+  ];
+
+  // nextSlide의 메모이제이션된 버전 생성 (dependency cycle 방지)
+  const nextSlideCallback = useCallback(() => {
+    if (isTransitioning) return; // 전환 중이면 무시
+
+    setIsTransitioning(true);
+
+    if (currentSlide === backgroundImages.length - 1) {
+      // 현재 마지막 (원본) 슬라이드라면
+      setCurrentSlide(backgroundImages.length); // 복제된 첫 번째 슬라이드로 설정
+
+      // 애니메이션이 끝나면 트랜지션 없이 진짜 첫 번째 슬라이드로 이동
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentSlide(0);
+      }, 800); // 트랜지션 시간과 일치시킴
+    } else {
+      setCurrentSlide(currentSlide + 1);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 800);
+    }
+
+    // 애니메이션 리셋
+    setAnimationKey((prev) => prev + 1);
+  }, [currentSlide, isTransitioning, backgroundImages.length]);
+
+  // 이전 슬라이드로 이동 (무한 루프 처리)
+  const prevSlide = () => {
+    if (isTransitioning) return; // 전환 중이면 무시
+
+    setIsTransitioning(true);
+
+    if (currentSlide === 0) {
+      // 현재 첫 번째 (원본) 슬라이드라면
+      setCurrentSlide(backgroundImages.length); // 마지막 슬라이드로 설정
+
+      // 애니메이션이 끝나면 트랜지션 없이 진짜 마지막 슬라이드로 이동
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentSlide(backgroundImages.length - 1);
+      }, 800); // 트랜지션 시간과 일치시킴
+    } else {
+      setCurrentSlide(currentSlide - 1);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 800);
+    }
+
+    // 애니메이션 리셋
+    setAnimationKey((prev) => prev + 1);
+  };
 
   // 컴포넌트가 마운트되면 가시성 설정
   useEffect(() => {
@@ -54,30 +122,21 @@ export default function HeroSection() {
 
   // 자동 슬라이드 전환을 위한 useEffect 추가
   useEffect(() => {
-    const autoSlideInterval = setInterval(() => {
-      nextSlide();
-    }, 10000); // 5초 간격으로 다음 슬라이드로 전환
+    let autoSlideInterval: NodeJS.Timeout | null = null;
+
+    // 트랜지션 중이 아닐 때만 자동 슬라이드 타이머 설정
+    if (!isTransitioning) {
+      autoSlideInterval = setInterval(() => {
+        nextSlideCallback();
+      }, 10000); // 10초 간격으로 다음 슬라이드로 전환
+    }
 
     return () => {
-      clearInterval(autoSlideInterval); // 컴포넌트 언마운트 시 인터벌 정리
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval); // 컴포넌트 언마운트 시 인터벌 정리
+      }
     };
-  }, []);
-
-  // 이전 슬라이드로 이동
-  const prevSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === 0 ? backgroundImages.length - 1 : prev - 1
-    );
-    // 애니메이션 리셋
-    setAnimationKey((prev) => prev + 1);
-  };
-
-  // 다음 슬라이드로 이동
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % backgroundImages.length);
-    // 애니메이션 리셋
-    setAnimationKey((prev) => prev + 1);
-  };
+  }, [nextSlideCallback]); // 메모이제이션된 콜백만 의존성으로 사용
 
   // 애니메이션 스타일 정의
   const marqueeAnimation: CSSProperties = {
@@ -104,6 +163,14 @@ export default function HeroSection() {
   const zoomBackground: CSSProperties = {
     animation: "zoomBackground 10s cubic-bezier(0.19, 1, 0.22, 1) forwards",
   };
+
+  // 현재 실제 인덱스 계산 (표시용)
+  const displayIndex =
+    currentSlide === backgroundImages.length
+      ? 0
+      : currentSlide === -1
+      ? backgroundImages.length - 1
+      : currentSlide;
 
   return (
     <>
@@ -164,9 +231,14 @@ export default function HeroSection() {
 
         .carousel-track {
           display: flex;
-          width: 300%; /* 3x the width for 3 slides */
+          width: ${allSlides.length *
+          100}%; /* dynamic width based on all slides (including clones) */
           height: 100%;
           transition: transform 0.8s ease-in-out;
+        }
+
+        .carousel-track.no-transition {
+          transition: none;
         }
 
         .carousel-slide {
@@ -204,20 +276,22 @@ export default function HeroSection() {
         {/* 배경 이미지 캐러셀 */}
         <div className="carousel-container absolute inset-0">
           <div
-            className="carousel-track"
+            className={`carousel-track ${
+              isTransitioning ? "" : "no-transition"
+            }`}
             style={{
               transform: `translateX(-${
-                currentSlide * (100 / backgroundImages.length)
+                (currentSlide + 1) * (100 / allSlides.length)
               }%)`,
             }}
           >
-            {backgroundImages.map((image, index) => (
+            {allSlides.map((image, index) => (
               <div
                 key={index}
                 className="carousel-slide"
                 style={{
                   backgroundImage: `url('${image}')`,
-                  ...(currentSlide === index ? zoomBackground : {}),
+                  ...(index === currentSlide + 1 ? zoomBackground : {}),
                 }}
               ></div>
             ))}
@@ -237,10 +311,10 @@ export default function HeroSection() {
             >
               <h1 className="text-white text-5xl md:text-6xl lg:text-9xl font-extrabold drop-shadow-lg inline-block">
                 <span style={marqueeAnimation}>
-                  {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
-                  {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
-                  {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
-                  {sloganTexts[currentSlide]}&nbsp;&nbsp;&nbsp;
+                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
+                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
+                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
+                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
                 </span>
               </h1>
             </div>
@@ -283,7 +357,7 @@ export default function HeroSection() {
           </button>
 
           <button
-            onClick={nextSlide}
+            onClick={nextSlideCallback}
             className="w-10 h-10 flex items-center justify-center text-white hover:text-gray-300 transition-all"
           >
             <FaChevronRight size={24} />
@@ -291,7 +365,7 @@ export default function HeroSection() {
 
           <div className="flex items-center text-lg font-semibold ml-2">
             <span className="text-white">
-              {String(currentSlide + 1).padStart(2, "0")}
+              {String(displayIndex + 1).padStart(2, "0")}
             </span>
             <span className="text-gray-500 mx-1">/</span>
             <span className="text-gray-500">

@@ -343,7 +343,7 @@ export default function Home() {
             <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
               Industries
             </h2>
-            <h3 className="text-blue-900 text-3xl font-bold">적용 산업 분야</h3>
+            <h3 className="text-gray-900 text-3xl font-bold">적용 산업 분야</h3>
             <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
           </div>
 
@@ -366,10 +366,10 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 flex items-center">
               <div className="p-8 md:p-16">
-                <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                <h2 className="text-gray-900 text-2xl font-bold mb-6">
                   다양한 산업 분야
                 </h2>
-                <p className="text-gray-700 mb-4 leading-relaxed">
+                <p className="text-gray-500 mb-4 leading-relaxed">
                   마스테코는 제조업, 상업시설, 데이터센터, 의료시설, 교육기관,
                   정부시설 등 다양한 분야에 최적화된 소방 솔루션을 제공합니다.
                 </p>
@@ -455,19 +455,30 @@ export default function Home() {
             <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
               News & Notice
             </h2>
-            <h3 className="text-blue-900 text-3xl font-bold">공지사항</h3>
+            <h3 className="text-gray-900 text-3xl font-bold">공지사항</h3>
             <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
           </div>
 
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/3 px-4 md:px-16 mb-10 md:mb-0">
-              <h2 className="text-blue-900 text-2xl font-bold mb-6">
+              <h2 className="text-gray-900 text-2xl font-bold mb-6">
                 마스테코 소식
               </h2>
-              <p className="text-gray-700 mb-6 leading-relaxed">
+              <p className="text-gray-500 mb-6 leading-relaxed">
                 마스테코의 최신 소식과 공지사항을 확인하세요. 새로운 제품 출시,
                 인증 획득, 기업 소식 및 채용 정보를 안내해 드립니다.
               </p>
+              <Link
+                href="/news"
+                className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
+              >
+                <span className="transition-all duration-300 group-hover:tracking-widest">
+                  View
+                </span>
+                <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                  <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
+                </div>
+              </Link>
             </div>
             <div className="md:w-2/3 px-4 md:px-16">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
