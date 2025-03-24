@@ -336,7 +336,7 @@ export default function HeroSection() {
           </div>
           <p
             key={`intro-${animationKey}`}
-            className="text-blue-200 text-lg md:text-xl max-w-2xl mt-2 drop-shadow-md leading-relaxed tracking-normal md:tracking-wide text-center mx-auto"
+            className="text-white text-lg md:text-xl max-w-2xl mt-2 drop-shadow-md leading-relaxed tracking-normal md:tracking-wide text-center mx-auto"
             style={fadeInUpDelay2}
           >
             {/* 모바일 뷰용 (세 줄) */}

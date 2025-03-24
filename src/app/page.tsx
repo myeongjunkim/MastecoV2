@@ -153,12 +153,6 @@ export default function Home() {
                         backgroundImage: `url('/images/industry/Visual 01.png')`,
                       }}
                     ></div>
-                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                    <div className="absolute bottom-0 left-0 p-6 z-10">
-                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                        수계 소화설비
-                      </h3>
-                    </div>
                   </div>
                 </div>
                 <div
@@ -201,12 +195,6 @@ export default function Home() {
                         backgroundImage: `url('/images/industry/Visual 02.png')`,
                       }}
                     ></div>
-                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                    <div className="absolute bottom-0 left-0 p-6 z-10">
-                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                        가스계 소화설비
-                      </h3>
-                    </div>
                   </div>
                 </div>
                 <div
@@ -249,12 +237,6 @@ export default function Home() {
                         backgroundImage: `url('/images/industry/Visual 03.png')`,
                       }}
                     ></div>
-                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                    <div className="absolute bottom-0 left-0 p-6 z-10">
-                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                        맞춤형 소방 솔루션
-                      </h3>
-                    </div>
                   </div>
                 </div>
                 <div
@@ -296,12 +278,6 @@ export default function Home() {
                         backgroundImage: `url('/images/industry/Visual 04.png')`,
                       }}
                     ></div>
-                    <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                    <div className="absolute bottom-0 left-0 p-6 z-10">
-                      <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                        설계 및 컨설팅
-                      </h3>
-                    </div>
                   </div>
                 </div>
                 <div
@@ -356,12 +332,6 @@ export default function Home() {
                     backgroundImage: `url('/images/industry/masteco-building.jpg')`,
                   }}
                 ></div>
-                <div className="absolute inset-0 bg-black opacity-40 transition-opacity duration-500 group-hover:opacity-20"></div>
-                <div className="absolute bottom-0 left-0 p-6 z-10">
-                  <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                    다양한 산업 분야
-                  </h3>
-                </div>
               </div>
             </div>
             <div className="md:w-1/2 flex items-center">
@@ -418,9 +388,7 @@ export default function Home() {
             ></div>
             <div className="absolute inset-0 bg-black opacity-30"></div>
             <div className="absolute bottom-0 left-0 p-8 z-10">
-              <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                소방설비
-              </h3>
+              {/* Title removed */}
             </div>
 
             {/* Read More 링크 */}
