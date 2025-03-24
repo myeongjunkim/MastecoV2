@@ -76,7 +76,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center focus:outline-none">
           <Image
             src="/images/logos/image.png"
             alt="MASTECO Logo"
@@ -105,7 +105,9 @@ const Header = () => {
               </Link>
 
               {item.submenu.length > 0 && (
-                <div className="absolute left-0 mt-2 w-48 hidden group-hover:block">
+                <div className="absolute left-0 top-full pt-5 w-48 hidden group-hover:block">
+                  {/* Invisible gap-filler to maintain hover state when moving to dropdown */}
+                  <div className="absolute h-5 -top-5 left-0 right-0"></div>
                   <div className="py-2 bg-[rgba(210,60,60,0.75)] text-white rounded-md shadow-lg">
                     {item.submenu.map((subitem, subindex) => (
                       <Link

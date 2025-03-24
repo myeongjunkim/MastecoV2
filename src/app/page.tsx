@@ -166,7 +166,7 @@ export default function Home() {
                   data-fade-index="2"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-3xl mb-4">
                       수계 소화설비
                     </h2>
                     <p className="text-gray-500 mb-4 leading-relaxed">
@@ -214,7 +214,7 @@ export default function Home() {
                   data-fade-index="4"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-3xl mb-4">
                       가스계 소화설비
                     </h2>
                     <p className="text-gray-500 mb-4 leading-relaxed">
@@ -262,7 +262,7 @@ export default function Home() {
                   data-fade-index="6"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-3xl mb-4">
                       맞춤형 소방 솔루션
                     </h2>
                     <p className="text-gray-500 mb-4 leading-relaxed">
@@ -309,7 +309,7 @@ export default function Home() {
                   data-fade-index="8"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-3xl mb-4">
                       설계 및 컨설팅
                     </h2>
                     <p className="text-gray-500 mb-4 leading-relaxed">
@@ -366,7 +366,7 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 flex items-center">
               <div className="p-8 md:p-16">
-                <h2 className="text-gray-900 text-2xl font-bold mb-6">
+                <h2 className="text-gray-900 text-3xl mb-4">
                   다양한 산업 분야
                 </h2>
                 <p className="text-gray-500 mb-4 leading-relaxed">
@@ -461,9 +461,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/3 px-4 md:px-16 mb-10 md:mb-0">
-              <h2 className="text-gray-900 text-2xl font-bold mb-6">
-                마스테코 소식
-              </h2>
+              <h2 className="text-gray-900 text-3xl mb-4">마스테코 소식</h2>
               <p className="text-gray-500 mb-6 leading-relaxed">
                 마스테코의 최신 소식과 공지사항을 확인하세요. 새로운 제품 출시,
                 인증 획득, 기업 소식 및 채용 정보를 안내해 드립니다.
