@@ -56,7 +56,7 @@ export default function HeroSection() {
   useEffect(() => {
     const autoSlideInterval = setInterval(() => {
       nextSlide();
-    }, 5000); // 5초 간격으로 다음 슬라이드로 전환
+    }, 10000); // 5초 간격으로 다음 슬라이드로 전환
 
     return () => {
       clearInterval(autoSlideInterval); // 컴포넌트 언마운트 시 인터벌 정리
