@@ -28,9 +28,18 @@ export default function HeroSection() {
 
   // 슬로건 텍스트 배열 추가
   const sloganTexts = [
-    "INNOVATION TODAY FOR A SAFER TOMORROW",
-    "FIRE PROTECTION FOR SAFE WORLD",
-    "FIRE PROTECTION FOR SAFE WORLD",
+    {
+      part1: "INNOVATING FOR A SAFER TOMORROW,",
+      part2: "CARRIED ON TODAY",
+    },
+    {
+      part1: "TOWARDS GLOBAL LEADER",
+      part2: "IN FIRE PROTECTION PRODUCTS",
+    },
+    {
+      part1: "TRUSTED PROTECTION",
+      part2: "FOR LIFE AND PROPERTY",
+    },
   ];
 
   // 무한 슬라이드를 위한 슬라이드 배열 생성
@@ -52,6 +61,8 @@ export default function HeroSection() {
     if (isTransitioning) return; // 전환 중이면 무시
 
     setIsTransitioning(true);
+    // 애니메이션 리셋 - 슬라이드 전환 전에 즉시 설정하여 애니메이션이 재설정되도록 함
+    setAnimationKey((prev) => prev + 1);
 
     if (currentSlide === backgroundImages.length - 1) {
       // 현재 마지막 (원본) 슬라이드라면
@@ -68,9 +79,6 @@ export default function HeroSection() {
         setIsTransitioning(false);
       }, 800);
     }
-
-    // 애니메이션 리셋
-    setAnimationKey((prev) => prev + 1);
   }, [currentSlide, isTransitioning, backgroundImages.length]);
 
   // 이전 슬라이드로 이동 (무한 루프 처리)
@@ -78,6 +86,8 @@ export default function HeroSection() {
     if (isTransitioning) return; // 전환 중이면 무시
 
     setIsTransitioning(true);
+    // 애니메이션 리셋 - 슬라이드 전환 전에 즉시 설정하여 애니메이션이 재설정되도록 함
+    setAnimationKey((prev) => prev + 1);
 
     if (currentSlide === 0) {
       // 현재 첫 번째 (원본) 슬라이드라면
@@ -94,9 +104,6 @@ export default function HeroSection() {
         setIsTransitioning(false);
       }, 800);
     }
-
-    // 애니메이션 리셋
-    setAnimationKey((prev) => prev + 1);
   };
 
   // 컴포넌트가 마운트되면 가시성 설정
@@ -128,7 +135,7 @@ export default function HeroSection() {
     if (!isTransitioning) {
       autoSlideInterval = setInterval(() => {
         nextSlideCallback();
-      }, 10000); // 10초 간격으로 다음 슬라이드로 전환
+      }, 5000); // 10초 간격으로 다음 슬라이드로 전환
     }
 
     return () => {
@@ -139,24 +146,22 @@ export default function HeroSection() {
   }, [nextSlideCallback]); // 메모이제이션된 콜백만 의존성으로 사용
 
   // 애니메이션 스타일 정의
-  const marqueeAnimation: CSSProperties = {
-    animation: "marquee 100s linear infinite",
-    whiteSpace: "nowrap",
-    display: "inline-block",
-    paddingLeft: "0",
-    willChange: "transform",
+  const slideInFromLeft: CSSProperties = {
+    opacity: 0,
+    transform: "translateX(-50%)",
+    animation: "slideInFromLeft 1s ease-out forwards",
   };
 
-  const fadeInUpDelay1: CSSProperties = {
+  const slideInFromRight: CSSProperties = {
     opacity: 0,
-    transform: "translateY(40px)",
-    animation: "fadeInUp 0.8s ease forwards 0.2s",
+    transform: "translateX(50%)",
+    animation: "slideInFromRight 1s ease-out forwards 0.3s",
   };
 
   const fadeInUpDelay2: CSSProperties = {
     opacity: 0,
     transform: "translateY(40px)",
-    animation: "fadeInUp 0.8s ease forwards 0.5s",
+    animation: "fadeInUp 0.8s ease forwards 1s",
   };
 
   // 배경 이미지 확대 애니메이션 스타일
@@ -186,12 +191,25 @@ export default function HeroSection() {
           }
         }
 
-        @keyframes marquee {
+        @keyframes slideInFromRight {
           0% {
-            transform: translateX(0%);
+            opacity: 0;
+            transform: translateX(50%);
           }
           100% {
-            transform: translateX(-100%);
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInFromLeft {
+          0% {
+            opacity: 0;
+            transform: translateX(-50%);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
           }
         }
 
@@ -212,13 +230,6 @@ export default function HeroSection() {
 
         .slide-transition {
           transition: transform 0.8s ease-in-out;
-        }
-
-        .marquee-container {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          white-space: nowrap;
         }
 
         .carousel-container {
@@ -302,21 +313,26 @@ export default function HeroSection() {
 
         {/* 중앙 슬로건 및 회사 소개 */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center">
-          <div className="marquee-container mb-6 w-full overflow-hidden">
-            <div
-              key={`slogan-${animationKey}`}
-              className="inline-block whitespace-nowrap"
-              style={fadeInUpDelay1}
-            >
-              <h1 className="text-white text-5xl md:text-6xl lg:text-9xl font-extrabold drop-shadow-lg inline-block">
-                <span style={marqueeAnimation}>
-                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
-                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
-                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
-                  {allSlogans[currentSlide + 1]}&nbsp;&nbsp;&nbsp;
-                </span>
-              </h1>
-            </div>
+          <div
+            key={`slogan-${animationKey}`}
+            className="mb-6 flex flex-col items-center justify-center w-full overflow-hidden"
+          >
+            <h1 className="text-white text-3xl md:text-4xl lg:text-7xl font-extrabold drop-shadow-lg mb-2 w-full overflow-hidden">
+              <span
+                className="inline-block w-full"
+                style={isTransitioning ? { opacity: 0 } : slideInFromLeft}
+              >
+                {allSlogans[currentSlide + 1].part1}
+              </span>
+            </h1>
+            <h1 className="text-white text-3xl md:text-4xl lg:text-7xl font-extrabold drop-shadow-lg w-full overflow-hidden">
+              <span
+                className="inline-block w-full"
+                style={isTransitioning ? { opacity: 0 } : slideInFromRight}
+              >
+                {allSlogans[currentSlide + 1].part2}
+              </span>
+            </h1>
           </div>
           <p
             key={`intro-${animationKey}`}
