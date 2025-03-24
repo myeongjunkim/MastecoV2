@@ -135,7 +135,7 @@ export default function Home() {
             <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
               Our Solutions
             </h2>
-            <h3 className="text-blue-900 text-3xl font-bold">
+            <h3 className="text-gray-900 text-3xl font-bold">
               핵심 제품 솔루션
             </h3>
             <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
@@ -166,10 +166,10 @@ export default function Home() {
                   data-fade-index="2"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
                       수계 소화설비
                     </h2>
-                    <p className="text-gray-700 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed">
                       스프링클러 헤드, 스테인리스 스틸 플렉시블 호스 및 피팅,
                       알람 체크 밸브, 프리액션 밸브, 델류지 밸브 등 다양한 수계
                       소화설비 솔루션을 제공합니다.
@@ -178,9 +178,11 @@ export default function Home() {
                       href="/products/water-based"
                       className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      <span>View</span>
-                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
-                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      <span className="transition-all duration-300 group-hover:tracking-widest">
+                        View
+                      </span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
                       </div>
                     </Link>
                   </div>
@@ -212,10 +214,10 @@ export default function Home() {
                   data-fade-index="4"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
                       가스계 소화설비
                     </h2>
-                    <p className="text-gray-700 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed">
                       FIRESAFE, 주방 자동 소화장치, 캐비닛형, 모듈형 자동
                       소화장치, FM-200 피스톤 플로우 시스템 등 첨단 가스계
                       소화설비를 제공합니다.
@@ -224,9 +226,11 @@ export default function Home() {
                       href="/products/gaseous"
                       className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      <span>View</span>
-                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
-                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      <span className="transition-all duration-300 group-hover:tracking-widest">
+                        View
+                      </span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
                       </div>
                     </Link>
                   </div>
@@ -258,10 +262,10 @@ export default function Home() {
                   data-fade-index="6"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
                       맞춤형 소방 솔루션
                     </h2>
-                    <p className="text-gray-700 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed">
                       고객의 산업 및 적용 분야별 특정 요구사항을 충족시키기 위해
                       설계된 맞춤형 소방 솔루션을 제공합니다.
                     </p>
@@ -269,9 +273,11 @@ export default function Home() {
                       href="/products/custom"
                       className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      <span>View</span>
-                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
-                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      <span className="transition-all duration-300 group-hover:tracking-widest">
+                        View
+                      </span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
                       </div>
                     </Link>
                   </div>
@@ -303,10 +309,10 @@ export default function Home() {
                   data-fade-index="8"
                 >
                   <div className="p-8 md:p-16">
-                    <h2 className="text-blue-900 text-2xl font-bold mb-6">
+                    <h2 className="text-gray-900 text-2xl font-bold mb-6">
                       설계 및 컨설팅
                     </h2>
-                    <p className="text-gray-700 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed">
                       마스테코는 소방 시스템 설계부터 설치, 유지보수까지
                       소방설비의 전체 수명 주기에 걸친 전문적인 컨설팅 서비스를
                       제공합니다.
@@ -315,9 +321,11 @@ export default function Home() {
                       href="/products/consulting"
                       className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                     >
-                      <span>View</span>
-                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
-                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                      <span className="transition-all duration-300 group-hover:tracking-widest">
+                        View
+                      </span>
+                      <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                        <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
                       </div>
                     </Link>
                   </div>
@@ -369,9 +377,11 @@ export default function Home() {
                   href="/industry"
                   className="text-blue-700 font-semibold hover:text-blue-500 flex items-end gap-2 group"
                 >
-                  <span>View</span>
-                  <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em]">
-                    <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right"></div>
+                  <span className="transition-all duration-300 group-hover:tracking-widest">
+                    View
+                  </span>
+                  <div className="w-8 h-[1px] bg-blue-700 group-hover:bg-blue-500 relative mb-[0.4em] transition-all duration-300 group-hover:w-12">
+                    <div className="absolute top-0 right-0 w-3 h-[1px] bg-blue-700 group-hover:bg-blue-500 rotate-45 origin-right transition-all duration-300 group-hover:w-4"></div>
                   </div>
                 </Link>
               </div>

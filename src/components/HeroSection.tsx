@@ -26,7 +26,7 @@ export default function HeroSection() {
 
   // 슬로건 텍스트 배열 추가
   const sloganTexts = [
-    "INNOVATION TODAY FOR A TOMORROW",
+    "INNOVATION TODAY FOR A SAFER TOMORROW",
     "FIRE PROTECTION FOR SAFE WORLD",
     "FIRE PROTECTION FOR SAFE WORLD",
   ];
