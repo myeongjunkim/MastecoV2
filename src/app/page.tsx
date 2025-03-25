@@ -348,7 +348,7 @@ export default function Home() {
                     <h2 className="text-gray-900 text-3xl mb-4">
                       수계 소화설비
                     </h2>
-                    <p className="text-gray-500 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed max-w-sm">
                       스프링클러 헤드, 스테인리스 스틸 플렉시블 호스 및 피팅,
                       알람 체크 밸브, 프리액션 밸브, 델류지 밸브 등 다양한 수계
                       소화설비 솔루션을 제공합니다.
@@ -390,7 +390,7 @@ export default function Home() {
                     <h2 className="text-gray-900 text-3xl mb-4">
                       가스계 소화설비
                     </h2>
-                    <p className="text-gray-500 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed max-w-sm">
                       FIRESAFE, 주방 자동 소화장치, 캐비닛형, 모듈형 자동
                       소화장치, FM-200 피스톤 플로우 시스템 등 첨단 가스계
                       소화설비를 제공합니다.
@@ -432,7 +432,7 @@ export default function Home() {
                     <h2 className="text-gray-900 text-3xl mb-4">
                       맞춤형 소방 솔루션
                     </h2>
-                    <p className="text-gray-500 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed max-w-sm">
                       고객의 산업 및 적용 분야별 특정 요구사항을 충족시키기 위해
                       설계된 맞춤형 소방 솔루션을 제공합니다.
                     </p>
@@ -473,7 +473,7 @@ export default function Home() {
                     <h2 className="text-gray-900 text-3xl mb-4">
                       설계 및 컨설팅
                     </h2>
-                    <p className="text-gray-500 mb-4 leading-relaxed">
+                    <p className="text-gray-500 mb-4 leading-relaxed max-w-sm">
                       마스테코는 소방 시스템 설계부터 설치, 유지보수까지
                       소방설비의 전체 수명 주기에 걸친 전문적인 컨설팅 서비스를
                       제공합니다.
