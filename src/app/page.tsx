@@ -162,8 +162,8 @@ export default function Home() {
 
     // 핵심 제품 솔루션을 위한 특별 관찰자 - 빠르게 감지하지만 천천히 움직이도록
     const productSolutionObserver = createObserver({
-      threshold: 0.01, // 아주 빠르게 감지
-      rootMargin: "0px 0px 5% 0px", // 화면에 들어오기 전에 미리 감지
+      threshold: 0.8, // 요소가 80% 이상 보일 때 애니메이션 시작
+      rootMargin: "0px 0px -10% 0px", // 화면 하단에서 10% 위치에서 애니메이션 시작
     });
 
     // 각 요소에 인덱스를 부여하고 해당 섹션에 맞는 Observer 적용
@@ -217,6 +217,16 @@ export default function Home() {
         parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 1 &&
         parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
 
+      // 핵심 제품 솔루션 섹션의 텍스트 요소에 대해 transition duration 증가
+      if (
+        isProductSolution &&
+        (element.classList.contains("slide-left-element") ||
+          element.classList.contains("slide-right-element"))
+      ) {
+        (element as HTMLElement).style.transition =
+          "opacity 1.5s cubic-bezier(0.22, 0.61, 0.36, 1), transform 1.5s cubic-bezier(0.22, 0.61, 0.36, 1)";
+      }
+
       if (isAboutMastecoSection) {
         aboutMastecoObserver.observe(element);
       } else if (isProductSolution) {
@@ -266,11 +276,11 @@ export default function Home() {
         }
 
         .slide-left-element {
-          transform: translateX(-50px);
+          transform: translateX(-100px);
         }
 
         .slide-right-element {
-          transform: translateX(50px);
+          transform: translateX(100px);
         }
 
         .scale-up-element {
