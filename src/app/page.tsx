@@ -27,18 +27,27 @@ export default function Home() {
               element.dataset.fadeIndex ||
               element.getAttribute("data-fade-index");
 
-            // 더 부드러운 타이밍을 위한 지연 시간 수정
-            const delay = dataIndex ? parseInt(dataIndex) * 0.05 : 0;
+            // 핵심 제품 솔루션 요소 식별
+            const isProductSolutionSection =
+              parseInt((element as HTMLElement).dataset.fadeIndex || "0") >=
+                1 &&
+              parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
+
+            // 핵심 제품 솔루션은 빠르게 시작하는 지연 시간 적용
+            const delay = dataIndex
+              ? isProductSolutionSection
+                ? parseInt(dataIndex) * 0.02
+                : parseInt(dataIndex) * 0.05
+              : 0;
 
             // 요소가 화면에 얼마나 들어왔는지에 따라 애니메이션 시작 시간 조정
-            // 더 부드러운 애니메이션을 위해 공식 조정
             const visibleRatio = entry.intersectionRatio;
-            const adjustedDelay = delay * (0.8 - visibleRatio * 0.5);
+            const adjustedDelay = delay * (0.6 - visibleRatio * 0.5);
 
             // 최소 지연 시간 보장으로 더 부드러운 진입 효과
             setTimeout(() => {
               element.classList.add("animate-in");
-            }, Math.max(50, adjustedDelay * 1000));
+            }, Math.max(isProductSolutionSection ? 20 : 50, adjustedDelay * 1000));
 
             observer.unobserve(entry.target);
           }
@@ -68,6 +77,12 @@ export default function Home() {
     const contactObserver = createObserver({
       threshold: 0.05,
       rootMargin: "0px 0px 5% 0px", // 약간 일찍 감지
+    });
+
+    // 핵심 제품 솔루션을 위한 특별 관찰자 - 빠르게 감지하지만 천천히 움직이도록
+    const productSolutionObserver = createObserver({
+      threshold: 0.01, // 아주 빠르게 감지
+      rootMargin: "0px 0px 5% 0px", // 화면에 들어오기 전에 미리 감지
     });
 
     // 각 요소에 인덱스를 부여하고 해당 섹션에 맞는 Observer 적용
@@ -106,7 +121,14 @@ export default function Home() {
         element.closest('[data-fade-index="51"]') !== null ||
         parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 43;
 
-      if (isContactSection) {
+      // 핵심 제품 솔루션 섹션 요소 식별 (data-fade-index가 1-8인 요소들)
+      const isProductSolution =
+        parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 1 &&
+        parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
+
+      if (isProductSolution) {
+        productSolutionObserver.observe(element);
+      } else if (isContactSection) {
         contactObserver.observe(element);
       } else if (isHeader) {
         headerObserver.observe(element);
@@ -130,50 +152,74 @@ export default function Home() {
       <style jsx global>{`
         .fade-in-element {
           opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transform: translateY(40px);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
         .slide-left-element {
           opacity: 0;
-          transform: translateX(-30px);
-          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transform: translateX(-50px);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
         .slide-right-element {
           opacity: 0;
-          transform: translateX(30px);
-          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transform: translateX(50px);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
         .scale-up-element {
           opacity: 0;
-          transform: scale(0.95);
-          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transform: scale(0.9);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
         .slide-up-element {
           opacity: 0;
-          transform: translateY(25px);
-          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transform: translateY(50px);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
+        }
+
+        /* 핵심 제품 솔루션을 위한 특별 애니메이션 - 반응은 빠르게, 이동은 천천히 */
+        .section-trigger .slide-up-element[data-fade-index="1"],
+        .section-trigger .slide-up-element[data-fade-index="3"],
+        .section-trigger .slide-up-element[data-fade-index="5"],
+        .section-trigger .slide-up-element[data-fade-index="7"] {
+          transform: translateY(80px);
+          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        .section-trigger .slide-right-element[data-fade-index="2"],
+        .section-trigger .slide-right-element[data-fade-index="6"] {
+          transform: translateX(80px);
+          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        .section-trigger .slide-left-element[data-fade-index="4"],
+        .section-trigger .slide-left-element[data-fade-index="8"] {
+          transform: translateX(-80px);
+          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
         .rotate-element {
           opacity: 0;
-          transform: rotateY(10deg) translateZ(10px);
+          transform: rotateY(15deg) translateZ(15px);
           perspective: 1000px;
-          transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+          transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
@@ -281,7 +327,7 @@ export default function Home() {
             {/* 3-1. 첫 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 fade-in-element" data-fade-index="1">
+                <div className="md:w-1/2 slide-up-element" data-fade-index="1">
                   <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -292,7 +338,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  className="md:w-1/2 flex items-center bg-white slide-right-element"
                   data-fade-index="2"
                 >
                   <div className="p-8 md:p-16">
@@ -323,7 +369,7 @@ export default function Home() {
             {/* 3-2. 두 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 fade-in-element" data-fade-index="3">
+                <div className="md:w-1/2 slide-up-element" data-fade-index="3">
                   <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -334,7 +380,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  className="md:w-1/2 flex items-center bg-white slide-left-element"
                   data-fade-index="4"
                 >
                   <div className="p-8 md:p-16">
@@ -365,7 +411,7 @@ export default function Home() {
             {/* 3-3. 세 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 fade-in-element" data-fade-index="5">
+                <div className="md:w-1/2 slide-up-element" data-fade-index="5">
                   <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -376,7 +422,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  className="md:w-1/2 flex items-center bg-white slide-right-element"
                   data-fade-index="6"
                 >
                   <div className="p-8 md:p-16">
@@ -406,7 +452,7 @@ export default function Home() {
             {/* 3-4. 네 번째 솔루션 섹션 (추가) */}
             <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 fade-in-element" data-fade-index="7">
+                <div className="md:w-1/2 slide-up-element" data-fade-index="7">
                   <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
@@ -417,7 +463,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white fade-in-element"
+                  className="md:w-1/2 flex items-center bg-white slide-left-element"
                   data-fade-index="8"
                 >
                   <div className="p-8 md:p-16">
