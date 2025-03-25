@@ -255,7 +255,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <style jsx global>{`
         /* Base animation classes - define the initial hidden state */
         .fade-in-element,
@@ -319,7 +319,7 @@ export default function Home() {
       {/* 2. 회사 설명 섹션 - 블루 박스 */}
       <div className="relative py-12 bg-white">
         {/* 상단 타이틀 - 왼쪽 정렬 */}
-        <div className="container mx-auto px-4 md:px-16 mb-8">
+        <div className="container mx-auto px-4 md:px-8 mb-8">
           <div className="flex items-center">
             <h2
               className="text-blue-900 text-xl font-semibold slide-left-element"
@@ -342,7 +342,7 @@ export default function Home() {
             }}
           ></div>
 
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row items-stretch">
               {/* 왼쪽 영역: 이미지 */}
               <div
@@ -387,7 +387,7 @@ export default function Home() {
 
       {/* 3. 바둑판식 이미지와 솔루션 설명 섹션 */}
       <div className="relative py-20 bg-gray-50 section-trigger">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8">
           <div
             className="mb-16 text-center fade-in-element"
             data-fade-index="0"
@@ -574,7 +574,7 @@ export default function Home() {
 
       {/* 4. 산업 분야 설명 섹션 */}
       <div className="relative py-20 bg-white section-trigger">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="mb-16 text-center">
             <h2
               className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
@@ -638,7 +638,7 @@ export default function Home() {
       <div className="relative section-trigger">
         {/* 상단 타이틀 */}
         <div className="bg-white py-6 border-b border-gray-200">
-          <div className="container mx-auto px-4 md:px-16">
+          <div className="container mx-auto px-4 md:px-8">
             <div className="flex items-baseline">
               <h2
                 className="text-3xl md:text-4xl font-bold text-gray-900 mr-2 slide-left-element"
@@ -703,7 +703,7 @@ export default function Home() {
 
       {/* 6. 공지사항 섹션 */}
       <div className="relative py-20 bg-gray-50 section-trigger">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="mb-16 text-center">
             <h2
               className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
@@ -960,6 +960,6 @@ export default function Home() {
           transform: translateY(0);
         }
       `}</style>
-    </>
+    </div>
   );
 }
