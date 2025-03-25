@@ -21,35 +21,42 @@ export default function Home() {
     const createObserver = (options: IntersectionObserverInit) => {
       return new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+          const element = entry.target as HTMLElement;
+          const dataIndex =
+            element.dataset.fadeIndex ||
+            element.getAttribute("data-fade-index");
+
+          // 핵심 제품 솔루션 요소 식별
+          const isProductSolutionSection =
+            parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 1 &&
+            parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
+
+          // 요소가 뷰포트 안에 들어왔을 때
           if (entry.isIntersecting) {
-            const element = entry.target as HTMLElement;
-            const dataIndex =
-              element.dataset.fadeIndex ||
-              element.getAttribute("data-fade-index");
-
-            // 핵심 제품 솔루션 요소 식별
-            const isProductSolutionSection =
-              parseInt((element as HTMLElement).dataset.fadeIndex || "0") >=
-                1 &&
-              parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
-
-            // 핵심 제품 솔루션은 빠르게 시작하는 지연 시간 적용
-            const delay = dataIndex
-              ? isProductSolutionSection
-                ? parseInt(dataIndex) * 0.02
-                : parseInt(dataIndex) * 0.05
-              : 0;
+            // 핵심 제품 솔루션 행마다 더 큰 지연 시간 적용
+            let delay = 0;
+            if (isProductSolutionSection) {
+              // 핵심 제품 솔루션 각 행별 지연 적용 (1-2, 3-4, 5-6, 7-8의 각 그룹별로 순차적 지연)
+              const indexNum = parseInt(dataIndex || "0");
+              // 각 행 그룹별로 지연 시간 계산 (첫 행: 0, 두번째 행: 0.4초, 세번째 행: 0.8초, 네번째 행: 1.2초)
+              const rowGroupIndex = Math.floor((indexNum - 1) / 2);
+              delay = rowGroupIndex * 0.4; // 각 행 그룹마다 0.4초씩 지연
+            } else if (dataIndex) {
+              // 다른 요소는 기존대로 점진적 지연
+              delay = parseInt(dataIndex) * 0.05;
+            }
 
             // 요소가 화면에 얼마나 들어왔는지에 따라 애니메이션 시작 시간 조정
             const visibleRatio = entry.intersectionRatio;
-            const adjustedDelay = delay * (0.6 - visibleRatio * 0.5);
+            const adjustedDelay = delay * (0.6 - visibleRatio * 0.3);
 
             // 최소 지연 시간 보장으로 더 부드러운 진입 효과
             setTimeout(() => {
               element.classList.add("animate-in");
-            }, Math.max(isProductSolutionSection ? 20 : 50, adjustedDelay * 1000));
-
-            observer.unobserve(entry.target);
+            }, Math.max(50, adjustedDelay * 1000));
+          } else {
+            // 요소가 뷰포트에서 벗어났을 때 애니메이션 클래스 제거
+            element.classList.remove("animate-in");
           }
         });
       }, options);
@@ -142,7 +149,10 @@ export default function Home() {
     return () => {
       allAnimatedElements.forEach((element) => {
         observer.unobserve(element);
-        if (headerObserver) headerObserver.unobserve(element);
+        headerObserver.unobserve(element);
+        sectionObserver.unobserve(element);
+        contactObserver.unobserve(element);
+        productSolutionObserver.unobserve(element);
       });
     };
   }, []);
@@ -150,47 +160,48 @@ export default function Home() {
   return (
     <>
       <style jsx global>{`
-        .fade-in-element {
+        /* Base animation classes - define the initial hidden state */
+        .fade-in-element,
+        .slide-left-element,
+        .slide-right-element,
+        .scale-up-element,
+        .slide-up-element,
+        .rotate-element {
           opacity: 0;
-          transform: translateY(40px);
-          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+          transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
             transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
+        }
+
+        /* Specific transformations for each animation type */
+        .fade-in-element {
+          transform: translateY(40px);
         }
 
         .slide-left-element {
-          opacity: 0;
           transform: translateX(-50px);
-          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-          will-change: opacity, transform;
         }
 
         .slide-right-element {
-          opacity: 0;
           transform: translateX(50px);
-          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-          will-change: opacity, transform;
         }
 
         .scale-up-element {
-          opacity: 0;
           transform: scale(0.9);
-          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-          will-change: opacity, transform;
         }
 
         .slide-up-element {
-          opacity: 0;
-          transform: translateY(50px);
-          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-          will-change: opacity, transform;
+          transform: translateY(120px);
         }
 
-        /* 핵심 제품 솔루션을 위한 특별 애니메이션 - 반응은 빠르게, 이동은 천천히 */
+        .rotate-element {
+          transform: rotateY(15deg) translateZ(15px);
+          perspective: 1000px;
+          transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        /* Special animations for product solution section */
         .section-trigger .slide-up-element[data-fade-index="1"],
         .section-trigger .slide-up-element[data-fade-index="3"],
         .section-trigger .slide-up-element[data-fade-index="5"],
@@ -214,24 +225,16 @@ export default function Home() {
             transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
-        .rotate-element {
-          opacity: 0;
-          transform: rotateY(15deg) translateZ(15px);
-          perspective: 1000px;
-          transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
-            transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
-          will-change: opacity, transform;
-        }
-
+        /* Common animated-in state for all elements */
         .animate-in {
           opacity: 1;
           transform: translateY(0) translateX(0) scale(1) rotateY(0)
             translateZ(0);
         }
 
-        /* 섹션에 도달하면 애니메이션 한번에 적용되도록 설정 */
+        /* Container for sections */
         .section-trigger {
-          overflow: hidden; /* 자식 요소들의 애니메이션을 담는 컨테이너 */
+          overflow: hidden;
         }
       `}</style>
 
