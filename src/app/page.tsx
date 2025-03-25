@@ -9,39 +9,118 @@ export default function Home() {
   // Intersection Observer를 사용하여 스크롤 애니메이션 적용
   useEffect(() => {
     const fadeElements = document.querySelectorAll(".fade-in-element");
+    const slideLeftElements = document.querySelectorAll(".slide-left-element");
+    const slideRightElements = document.querySelectorAll(
+      ".slide-right-element"
+    );
+    const scaleUpElements = document.querySelectorAll(".scale-up-element");
+    const slideUpElements = document.querySelectorAll(".slide-up-element");
+    const rotateElements = document.querySelectorAll(".rotate-element");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
+    // 섹션별로 다른 Observer를 생성하여 스크롤 위치에 따라 더 정확하게 애니메이션 적용
+    const createObserver = (options: IntersectionObserverInit) => {
+      return new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // 요소에 데이터 인덱스 속성 추가 (이미 있으면 그 값 사용)
             const element = entry.target as HTMLElement;
             const dataIndex =
               element.dataset.fadeIndex ||
               element.getAttribute("data-fade-index");
-            const delay = dataIndex ? parseInt(dataIndex) * 0.15 : 0;
 
-            // 지연 시간 적용
+            // 더 부드러운 타이밍을 위한 지연 시간 수정
+            const delay = dataIndex ? parseInt(dataIndex) * 0.05 : 0;
+
+            // 요소가 화면에 얼마나 들어왔는지에 따라 애니메이션 시작 시간 조정
+            // 더 부드러운 애니메이션을 위해 공식 조정
+            const visibleRatio = entry.intersectionRatio;
+            const adjustedDelay = delay * (0.8 - visibleRatio * 0.5);
+
+            // 최소 지연 시간 보장으로 더 부드러운 진입 효과
             setTimeout(() => {
-              element.classList.add("fade-in");
-            }, delay * 1000);
+              element.classList.add("animate-in");
+            }, Math.max(50, adjustedDelay * 1000));
 
             observer.unobserve(entry.target);
           }
         });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
+      }, options);
+    };
 
-    // 각 요소에 인덱스를 부여
-    fadeElements.forEach((element, index) => {
+    // 메인 관찰자: 일반적인 요소용 - 점진적 감지를 위한 설정
+    const observer = createObserver({
+      threshold: [0, 0.1, 0.2], // 더 많은 임계값으로 점진적 감지
+      rootMargin: "0px 0px -5% 0px", // 화면에 더 많이 들어와야 애니메이션 시작
+    });
+
+    // 헤더/타이틀 요소를 위한 관찰자
+    const headerObserver = createObserver({
+      threshold: 0.05,
+      rootMargin: "0px 0px 0px 0px", // 기본 설정
+    });
+
+    // 각 섹션에 대한 특별 관찰자
+    const sectionObserver = createObserver({
+      threshold: 0.05,
+      rootMargin: "0px 0px -5% 0px", // 화면에 더 많이 들어와야 애니메이션 시작
+    });
+
+    // 문의하기 섹션을 위한 관찰자
+    const contactObserver = createObserver({
+      threshold: 0.05,
+      rootMargin: "0px 0px 5% 0px", // 약간 일찍 감지
+    });
+
+    // 각 요소에 인덱스를 부여하고 해당 섹션에 맞는 Observer 적용
+    const allAnimatedElements = [
+      ...fadeElements,
+      ...slideLeftElements,
+      ...slideRightElements,
+      ...scaleUpElements,
+      ...slideUpElements,
+      ...rotateElements,
+    ];
+
+    allAnimatedElements.forEach((element, index) => {
       (element as HTMLElement).dataset.fadeIndex = index.toString();
-      observer.observe(element);
+
+      // 요소의 위치나 역할에 따라 다른 Observer 사용
+      const elementClasses = element.classList;
+      const isHeader =
+        elementClasses.contains("text-3xl") ||
+        elementClasses.contains("text-xl") ||
+        element.tagName === "H2" ||
+        element.tagName === "H3";
+
+      const isInSection = element.closest(".section-trigger") !== null;
+
+      // 문의하기 섹션 요소 식별
+      const isContactSection =
+        element.closest('[data-fade-index="43"]') !== null ||
+        element.closest('[data-fade-index="44"]') !== null ||
+        element.closest('[data-fade-index="45"]') !== null ||
+        element.closest('[data-fade-index="46"]') !== null ||
+        element.closest('[data-fade-index="47"]') !== null ||
+        element.closest('[data-fade-index="48"]') !== null ||
+        element.closest('[data-fade-index="49"]') !== null ||
+        element.closest('[data-fade-index="50"]') !== null ||
+        element.closest('[data-fade-index="51"]') !== null ||
+        parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 43;
+
+      if (isContactSection) {
+        contactObserver.observe(element);
+      } else if (isHeader) {
+        headerObserver.observe(element);
+      } else if (isInSection) {
+        sectionObserver.observe(element);
+      } else {
+        observer.observe(element);
+      }
     });
 
     return () => {
-      fadeElements.forEach((element) => {
+      allAnimatedElements.forEach((element) => {
         observer.unobserve(element);
+        if (headerObserver) headerObserver.unobserve(element);
       });
     };
   }, []);
@@ -51,14 +130,62 @@ export default function Home() {
       <style jsx global>{`
         .fade-in-element {
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+          transform: translateY(20px);
+          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
           will-change: opacity, transform;
         }
 
-        .fade-in {
+        .slide-left-element {
+          opacity: 0;
+          transform: translateX(-30px);
+          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .slide-right-element {
+          opacity: 0;
+          transform: translateX(30px);
+          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .scale-up-element {
+          opacity: 0;
+          transform: scale(0.95);
+          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .slide-up-element {
+          opacity: 0;
+          transform: translateY(25px);
+          transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .rotate-element {
+          opacity: 0;
+          transform: rotateY(10deg) translateZ(10px);
+          perspective: 1000px;
+          transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .animate-in {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) translateX(0) scale(1) rotateY(0)
+            translateZ(0);
+        }
+
+        /* 섹션에 도달하면 애니메이션 한번에 적용되도록 설정 */
+        .section-trigger {
+          overflow: hidden; /* 자식 요소들의 애니메이션을 담는 컨테이너 */
         }
       `}</style>
 
@@ -70,7 +197,10 @@ export default function Home() {
         {/* 상단 타이틀 - 왼쪽 정렬 */}
         <div className="container mx-auto px-4 md:px-16 mb-8">
           <div className="flex items-center">
-            <h2 className="text-blue-900 text-xl font-semibold">
+            <h2
+              className="text-blue-900 text-xl font-semibold slide-left-element"
+              data-fade-index="0"
+            >
               About MASTECO
               <span className="inline-block ml-2 w-8 h-0.5 bg-blue-900"></span>
             </h2>
@@ -91,7 +221,10 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-stretch">
               {/* 왼쪽 영역: 이미지 */}
-              <div className="md:w-1/2 relative mb-10 md:mb-0">
+              <div
+                className="md:w-1/2 relative mb-10 md:mb-0 slide-left-element"
+                data-fade-index="1"
+              >
                 <div className="h-full flex items-center">
                   <div className="relative w-full h-[400px] overflow-hidden">
                     <img
@@ -104,7 +237,10 @@ export default function Home() {
               </div>
 
               {/* 오른쪽 영역: 파란색 배경의 텍스트 박스 */}
-              <div className="md:w-1/2 bg-blue-900 text-white p-12 flex flex-col justify-center">
+              <div
+                className="md:w-1/2 bg-blue-900 text-white p-12 flex flex-col justify-center slide-right-element"
+                data-fade-index="2"
+              >
                 <h2 className="text-5xl font-bold mb-8">MASTECO is</h2>
                 <p className="text-lg mb-6 text-blue-50">
                   화재로부터 안전한 세상을 만들기 위해 사회적 책임감을 바탕으로
@@ -126,7 +262,7 @@ export default function Home() {
       </div>
 
       {/* 3. 바둑판식 이미지와 솔루션 설명 섹션 */}
-      <div className="relative py-20 bg-gray-50">
+      <div className="relative py-20 bg-gray-50 section-trigger">
         <div className="container mx-auto px-4">
           <div
             className="mb-16 text-center fade-in-element"
@@ -146,7 +282,7 @@ export default function Home() {
             <div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/2 fade-in-element" data-fade-index="1">
-                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                  <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -188,7 +324,7 @@ export default function Home() {
             <div>
               <div className="flex flex-col md:flex-row-reverse">
                 <div className="md:w-1/2 fade-in-element" data-fade-index="3">
-                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                  <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -230,7 +366,7 @@ export default function Home() {
             <div>
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/2 fade-in-element" data-fade-index="5">
-                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                  <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -271,7 +407,7 @@ export default function Home() {
             <div>
               <div className="flex flex-col md:flex-row-reverse">
                 <div className="md:w-1/2 fade-in-element" data-fade-index="7">
-                  <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                  <div className="h-[400px] relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -313,19 +449,30 @@ export default function Home() {
       </div>
 
       {/* 4. 산업 분야 설명 섹션 */}
-      <div className="relative py-20 bg-white">
+      <div className="relative py-20 bg-white section-trigger">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
-            <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
+            <h2
+              className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
+              data-fade-index="20"
+            >
               Industries
             </h2>
-            <h3 className="text-gray-900 text-3xl font-bold">적용 산업 분야</h3>
-            <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
+            <h3
+              className="text-gray-900 text-3xl font-bold fade-in-element"
+              data-fade-index="21"
+            >
+              적용 산업 분야
+            </h3>
+            <div
+              className="w-20 h-1 bg-blue-900 mx-auto mt-4 scale-up-element"
+              data-fade-index="22"
+            ></div>
           </div>
 
           <div className="flex flex-col md:flex-row-reverse">
-            <div className="md:w-1/2">
-              <div className="h-[400px] relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+            <div className="md:w-1/2 slide-right-element" data-fade-index="23">
+              <div className="h-[400px] relative overflow-hidden group">
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                   style={{
@@ -334,7 +481,10 @@ export default function Home() {
                 ></div>
               </div>
             </div>
-            <div className="md:w-1/2 flex items-center">
+            <div
+              className="md:w-1/2 flex items-center slide-left-element"
+              data-fade-index="24"
+            >
               <div className="p-8 md:p-16">
                 <h2 className="text-gray-900 text-3xl mb-4">
                   다양한 산업 분야
@@ -361,15 +511,21 @@ export default function Home() {
       </div>
 
       {/* 5. 산업 분야 배너 섹션 */}
-      <div className="relative">
+      <div className="relative section-trigger">
         {/* 상단 타이틀 */}
         <div className="bg-white py-6 border-b border-gray-200">
           <div className="container mx-auto px-4 md:px-16">
             <div className="flex items-baseline">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
+              <h2
+                className="text-3xl md:text-4xl font-bold text-gray-900 mr-2 slide-left-element"
+                data-fade-index="25"
+              >
                 MASTECO <span className="font-black">INDUSTRY</span>
               </h2>
-              <span className="text-sm text-gray-600 ml-2">
+              <span
+                className="text-sm text-gray-600 ml-2 fade-in-element"
+                data-fade-index="26"
+              >
                 마스테코 산업분야
               </span>
             </div>
@@ -379,7 +535,10 @@ export default function Home() {
         {/* 메인 이미지 섹션 */}
         <div className="h-[400px]">
           {/* 이미지 배경 */}
-          <div className="relative h-full overflow-hidden border-2 border-transparent hover:border-red-600 transition-colors duration-300">
+          <div
+            className="relative h-full overflow-hidden scale-up-element"
+            data-fade-index="27"
+          >
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 hover:scale-105"
               style={{
@@ -395,7 +554,8 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 p-8 z-10">
               <Link
                 href="/industry/aerospace"
-                className="flex items-center text-white font-semibold hover:text-blue-300 transition-colors"
+                className="flex items-center text-white font-semibold hover:text-blue-300 transition-colors slide-up-element"
+                data-fade-index="28"
               >
                 <span className="mr-2">Read More</span>
                 <span className="border-b border-white w-10"></span>
@@ -406,7 +566,8 @@ export default function Home() {
             <div className="absolute right-0 top-0 p-4 z-10">
               <Link
                 href="/contact"
-                className="bg-white text-blue-900 py-2 px-4 flex items-center font-bold shadow-md hover:bg-gray-100 transition-colors"
+                className="bg-white text-blue-900 py-2 px-4 flex items-center font-bold shadow-md hover:bg-gray-100 transition-colors slide-left-element"
+                data-fade-index="29"
               >
                 <FaPen className="mr-2" />
                 문의하기
@@ -417,18 +578,32 @@ export default function Home() {
       </div>
 
       {/* 6. 공지사항 섹션 */}
-      <div className="relative py-20 bg-gray-50">
+      <div className="relative py-20 bg-gray-50 section-trigger">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
-            <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
+            <h2
+              className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
+              data-fade-index="30"
+            >
               News & Notice
             </h2>
-            <h3 className="text-gray-900 text-3xl font-bold">공지사항</h3>
-            <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
+            <h3
+              className="text-gray-900 text-3xl font-bold fade-in-element"
+              data-fade-index="31"
+            >
+              공지사항
+            </h3>
+            <div
+              className="w-20 h-1 bg-blue-900 mx-auto mt-4 scale-up-element"
+              data-fade-index="32"
+            ></div>
           </div>
 
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/3 px-4 md:px-16 mb-10 md:mb-0">
+            <div
+              className="md:w-1/3 px-4 md:px-16 mb-10 md:mb-0 slide-right-element"
+              data-fade-index="33"
+            >
               <h2 className="text-gray-900 text-3xl mb-4">마스테코 소식</h2>
               <p className="text-gray-500 mb-6 leading-relaxed">
                 마스테코의 최신 소식과 공지사항을 확인하세요. 새로운 제품 출시,
@@ -446,10 +621,13 @@ export default function Home() {
                 </div>
               </Link>
             </div>
-            <div className="md:w-2/3 px-4 md:px-16">
+            <div
+              className="md:w-2/3 px-4 md:px-16 slide-left-element"
+              data-fade-index="34"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
-                <div>
-                  <div className="bg-black h-52 relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                <div className="rotate-element" data-fade-index="35">
+                  <div className="bg-black h-52 relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -464,8 +642,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div>
-                  <div className="bg-black h-52 relative overflow-hidden group border-2 border-transparent transition-colors duration-300 hover:border-red-600">
+                <div className="rotate-element" data-fade-index="36">
+                  <div className="bg-black h-52 relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
@@ -481,7 +659,10 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white shadow-md p-6">
+              <div
+                className="bg-white shadow-md p-6 slide-up-element"
+                data-fade-index="37"
+              >
                 <ul className="space-y-4">
                   <li>
                     <Link
@@ -530,7 +711,7 @@ export default function Home() {
       </div>
 
       {/* 7. 채용 정보 섹션 */}
-      <div className="relative py-20">
+      <div className="relative py-20 section-trigger">
         {/* 배경 이미지 */}
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
@@ -546,20 +727,35 @@ export default function Home() {
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mb-10">
-            <h2 className="text-blue-200 text-sm font-light uppercase tracking-wider mb-2">
+            <h2
+              className="text-blue-200 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
+              data-fade-index="38"
+            >
               Join Us
             </h2>
-            <h3 className="text-white text-3xl font-bold">인재채용</h3>
-            <div className="w-20 h-1 bg-white mx-auto mt-4"></div>
+            <h3
+              className="text-white text-3xl font-bold fade-in-element"
+              data-fade-index="39"
+            >
+              인재채용
+            </h3>
+            <div
+              className="w-20 h-1 bg-white mx-auto mt-4 scale-up-element"
+              data-fade-index="40"
+            ></div>
           </div>
 
-          <p className="text-white text-lg mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+          <p
+            className="text-white text-lg mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md fade-in-element"
+            data-fade-index="41"
+          >
             마스테코와 함께 성장하고 혁신할 인재를 찾고 있습니다. <br />
             화재로부터 안전한 세상을 만들기 위한 여정에 동참하세요.
           </p>
           <Link
             href="/careers"
-            className="inline-block bg-white text-blue-900 hover:bg-blue-50 py-3 px-8 rounded-md transition duration-300 font-bold shadow-lg"
+            className="inline-block bg-white text-blue-900 hover:bg-blue-50 py-3 px-8 rounded-md transition duration-300 font-bold shadow-lg scale-up-element"
+            data-fade-index="42"
           >
             채용 정보 보기
           </Link>
@@ -567,33 +763,62 @@ export default function Home() {
       </div>
 
       {/* 8. 문의하기 섹션 - 간략하게 표시 */}
-      <div className="relative py-20 bg-white">
+      <div className="relative py-20 bg-white section-trigger">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-16">
-            <h2 className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2">
+            <h2
+              className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
+              data-fade-index="43"
+            >
               Contact
             </h2>
-            <h3 className="text-blue-900 text-3xl font-bold">문의하기</h3>
-            <div className="w-20 h-1 bg-blue-900 mx-auto mt-4"></div>
+            <h3
+              className="text-blue-900 text-3xl font-bold fade-in-element"
+              data-fade-index="44"
+            >
+              문의하기
+            </h3>
+            <div
+              className="w-20 h-1 bg-blue-900 mx-auto mt-4 scale-up-element"
+              data-fade-index="45"
+            ></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="text-center bg-gray-50 p-8 rounded-md shadow-sm">
-              <div className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md">
+            <div
+              className="text-center bg-gray-50 p-8 rounded-md shadow-sm slide-up-element"
+              data-fade-index="46"
+            >
+              <div
+                className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md scale-up-element"
+                data-fade-index="47"
+              >
                 <FaPhone className="text-white text-xl" />
               </div>
               <h4 className="text-blue-900 font-bold mb-2">전화</h4>
               <p className="text-gray-700 font-medium">1644-0690</p>
             </div>
-            <div className="text-center bg-gray-50 p-8 rounded-md shadow-sm">
-              <div className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md">
+            <div
+              className="text-center bg-gray-50 p-8 rounded-md shadow-sm slide-up-element"
+              data-fade-index="48"
+            >
+              <div
+                className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md scale-up-element"
+                data-fade-index="49"
+              >
                 <FaEnvelope className="text-white text-xl" />
               </div>
               <h4 className="text-blue-900 font-bold mb-2">이메일</h4>
               <p className="text-gray-700 font-medium">info@masteco.co.kr</p>
             </div>
-            <div className="text-center bg-gray-50 p-8 rounded-md shadow-sm">
-              <div className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md">
+            <div
+              className="text-center bg-gray-50 p-8 rounded-md shadow-sm slide-up-element"
+              data-fade-index="50"
+            >
+              <div
+                className="w-16 h-16 mx-auto bg-blue-900 rounded-full flex items-center justify-center mb-4 shadow-md scale-up-element"
+                data-fade-index="51"
+              >
                 <FaMapMarkerAlt className="text-white text-xl" />
               </div>
               <h4 className="text-blue-900 font-bold mb-2">주소</h4>
@@ -604,6 +829,13 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .fade-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
     </>
   );
 }
