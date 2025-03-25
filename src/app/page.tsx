@@ -17,33 +17,101 @@ export default function Home() {
     const slideUpElements = document.querySelectorAll(".slide-up-element");
     const rotateElements = document.querySelectorAll(".rotate-element");
 
+    // 이미지 애니메이션 완료 시간 계산 (CSS에서 정의된 전환 시간에 기반)
+    const getAnimationDuration = () => {
+      // 가상 요소를 생성하여 CSS 스타일 가져오기
+      const tempElement = document.createElement("div");
+      tempElement.className = "slide-up-element";
+      document.body.appendChild(tempElement);
+
+      // 계산된 스타일에서 transition-duration 값 가져오기
+      const styles = window.getComputedStyle(tempElement);
+      const transitionDuration = styles.getPropertyValue("transition-duration");
+
+      // 임시 요소 제거
+      document.body.removeChild(tempElement);
+
+      // 문자열(예: "0.8s")에서 숫자로 변환
+      let durationInSeconds = 0.8; // 기본값
+      if (transitionDuration) {
+        durationInSeconds = parseFloat(transitionDuration);
+        // 'ms' 단위인 경우 초 단위로 변환
+        if (transitionDuration.includes("ms")) {
+          durationInSeconds = durationInSeconds / 1000;
+        }
+      }
+
+      return durationInSeconds;
+    };
+
+    // 이미지 애니메이션 지속 시간 + 여유 시간
+    const imageDuration = getAnimationDuration() + 0.5; // 애니메이션 완료 후 0.5초 여유
+
     // 섹션별로 다른 Observer를 생성하여 스크롤 위치에 따라 더 정확하게 애니메이션 적용
     const createObserver = (options: IntersectionObserverInit) => {
       return new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const element = entry.target as HTMLElement;
-          const dataIndex =
-            element.dataset.fadeIndex ||
-            element.getAttribute("data-fade-index");
-
-          // 핵심 제품 솔루션 요소 식별
-          const isProductSolutionSection =
-            parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 1 &&
-            parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
 
           // 요소가 뷰포트 안에 들어왔을 때
           if (entry.isIntersecting) {
-            // 핵심 제품 솔루션 행마다 더 큰 지연 시간 적용
+            // 핵심 제품 솔루션 솔루션 행마다 더 큰 지연 시간 적용
             let delay = 0;
-            if (isProductSolutionSection) {
-              // 핵심 제품 솔루션 각 행별 지연 적용 (1-2, 3-4, 5-6, 7-8의 각 그룹별로 순차적 지연)
-              const indexNum = parseInt(dataIndex || "0");
-              // 각 행 그룹별로 지연 시간 계산 (첫 행: 0, 두번째 행: 0.4초, 세번째 행: 0.8초, 네번째 행: 1.2초)
-              const rowGroupIndex = Math.floor((indexNum - 1) / 2);
-              delay = rowGroupIndex * 0.4; // 각 행 그룹마다 0.4초씩 지연
-            } else if (dataIndex) {
-              // 다른 요소는 기존대로 점진적 지연
-              delay = parseInt(dataIndex) * 0.05;
+
+            // 핵심 제품 솔루션 섹션의 텍스트 요소 (slide-right-element, slide-left-element)에 더 큰 지연 적용
+            const fadeIndex = parseInt(element.dataset.fadeIndex || "0");
+
+            // 디버깅: fadeIndex 확인
+            if (
+              element.classList.contains("slide-up-element") ||
+              element.classList.contains("slide-right-element") ||
+              element.classList.contains("slide-left-element")
+            ) {
+              console.log(
+                `Element class: ${element.className}, fadeIndex: ${fadeIndex}, data-fade-index: ${element.dataset.fadeIndex}`
+              );
+
+              // 요소의 텍스트 컨텐츠도 출력하여 어떤 요소인지 식별
+              const heading = element.querySelector("h2");
+              if (heading) {
+                console.log(`Element heading: ${heading.textContent}`);
+              }
+            }
+
+            // 클래스명과 부모 요소를 기반으로 핵심 제품 솔루션 섹션의 요소 식별
+            const sectionElement = element.closest(".section-trigger");
+            const isSolutionSection = sectionElement
+              ? sectionElement
+                  .querySelector("h3")
+                  ?.textContent?.includes("핵심 제품 솔루션") ?? false
+              : false;
+
+            // 이미지 요소 - 핵심 제품 솔루션 섹션의 slide-up-element 클래스를 가진 요소
+            const isProductSolutionImage =
+              isSolutionSection &&
+              element.classList.contains("slide-up-element");
+
+            // 텍스트 요소 - 핵심 제품 솔루션 섹션의 slide-right-element 또는 slide-left-element 클래스를 가진 요소
+            const isProductSolutionText =
+              isSolutionSection &&
+              (element.classList.contains("slide-right-element") ||
+                element.classList.contains("slide-left-element"));
+
+            // 디버깅: 식별된 요소 확인
+            if (isProductSolutionText) {
+              console.log(`텍스트 요소 감지: ${element.className}`);
+            }
+
+            if (isProductSolutionImage) {
+              console.log(`이미지 요소 감지: ${element.className}`);
+            }
+
+            if (isProductSolutionText) {
+              // 텍스트 요소는 이미지 애니메이션이 완료된 후에 표시 (CSS 애니메이션 시간 + 약간의 여유)
+              delay = imageDuration;
+            } else if (isProductSolutionImage) {
+              // 이미지는 즉시 표시 (0 딜레이)
+              delay = 0;
             }
 
             // 요소가 화면에 얼마나 들어왔는지에 따라 애니메이션 시작 시간 조정
@@ -66,6 +134,12 @@ export default function Home() {
     const observer = createObserver({
       threshold: [0, 0.1, 0.2], // 더 많은 임계값으로 점진적 감지
       rootMargin: "0px 0px -5% 0px", // 화면에 더 많이 들어와야 애니메이션 시작
+    });
+
+    // About MASTECO 섹션을 위한 특별 관찰자
+    const aboutMastecoObserver = createObserver({
+      threshold: 0.1, // 요소가 10% 이상 보일 때 애니메이션 시작
+      rootMargin: "0px 0px -10% 0px", // 화면 하단에서 10% 위치에서 애니메이션 시작
     });
 
     // 헤더/타이틀 요소를 위한 관찰자
@@ -105,6 +179,16 @@ export default function Home() {
     allAnimatedElements.forEach((element, index) => {
       (element as HTMLElement).dataset.fadeIndex = index.toString();
 
+      // About MASTECO 섹션 요소 식별 - 구조적 특징 사용
+      const isAboutMastecoSection =
+        element.closest(".bg-white") !== null &&
+        element
+          .closest(".bg-white")
+          ?.querySelector("h2")
+          ?.textContent?.includes("About MASTECO") &&
+        (element.classList.contains("slide-left-element") ||
+          element.classList.contains("slide-right-element"));
+
       // 요소의 위치나 역할에 따라 다른 Observer 사용
       const elementClasses = element.classList;
       const isHeader =
@@ -133,7 +217,9 @@ export default function Home() {
         parseInt((element as HTMLElement).dataset.fadeIndex || "0") >= 1 &&
         parseInt((element as HTMLElement).dataset.fadeIndex || "0") <= 8;
 
-      if (isProductSolution) {
+      if (isAboutMastecoSection) {
+        aboutMastecoObserver.observe(element);
+      } else if (isProductSolution) {
         productSolutionObserver.observe(element);
       } else if (isContactSection) {
         contactObserver.observe(element);
@@ -153,6 +239,7 @@ export default function Home() {
         sectionObserver.unobserve(element);
         contactObserver.unobserve(element);
         productSolutionObserver.unobserve(element);
+        aboutMastecoObserver.unobserve(element);
       });
     };
   }, []);
@@ -192,6 +279,8 @@ export default function Home() {
 
         .slide-up-element {
           transform: translateY(120px);
+          transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         .rotate-element {
@@ -199,30 +288,6 @@ export default function Home() {
           perspective: 1000px;
           transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
             transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-
-        /* Special animations for product solution section */
-        .section-trigger .slide-up-element[data-fade-index="1"],
-        .section-trigger .slide-up-element[data-fade-index="3"],
-        .section-trigger .slide-up-element[data-fade-index="5"],
-        .section-trigger .slide-up-element[data-fade-index="7"] {
-          transform: translateY(80px);
-          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
-        }
-
-        .section-trigger .slide-right-element[data-fade-index="2"],
-        .section-trigger .slide-right-element[data-fade-index="6"] {
-          transform: translateX(80px);
-          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
-        }
-
-        .section-trigger .slide-left-element[data-fade-index="4"],
-        .section-trigger .slide-left-element[data-fade-index="8"] {
-          transform: translateX(-80px);
-          transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-            transform 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
         /* Common animated-in state for all elements */
