@@ -482,13 +482,13 @@ const Header = () => {
         }
 
         /* 화살표 아이콘 스타일 변경 - 하단 방향일 때 다르게 보이도록 */
-        [data-drop-direction="bottom"] .subsub-chevron {
+        [data-drop-direction="bottom"] .subsubChevron {
           transform: rotate(90deg) !important;
           transition: transform 0.2s ease;
           cursor: pointer; /* 클릭 가능함을 시각적으로 표시 */
         }
 
-        [data-drop-direction="bottom"] .group-hover-subsub .subsub-chevron {
+        [data-drop-direction="bottom"] .group-hover-subsub .subsubChevron {
           transform: rotate(270deg) !important;
         }
 
@@ -503,6 +503,31 @@ const Header = () => {
           max-width: 300px;
           width: max-content;
           transition: all 0.3s ease;
+        }
+
+        /* 서브메뉴 항목 호버 스타일 */
+        .group\/subsub:hover > a {
+          background-color: rgba(255, 100, 100, 0.95) !important;
+        }
+
+        /* 활성화된 3단계 메뉴 스타일 - 하위메뉴가 열려있을 때 */
+        .group-hover-subsub > a {
+          background-color: rgba(255, 100, 100, 0.95) !important;
+        }
+
+        /* 4단계 메뉴 항목은 기본적으로 배경색 없음 */
+        .submenu-level4 a {
+          background-color: transparent !important;
+        }
+
+        /* 4단계 메뉴 항목은 호버 시에만 배경색 변경 */
+        .submenu-level4 a:hover {
+          background-color: rgba(255, 100, 100, 0.95) !important;
+        }
+
+        /* 그룹 자체의 배경색은 유지 */
+        .group\/subsub {
+          background-color: transparent !important;
         }
 
         /* 모든 메뉴 항목의 hover 상태 확인 */
@@ -576,7 +601,7 @@ const Header = () => {
                                 (subsubitem, subsubindex) => (
                                   <div
                                     key={subsubindex}
-                                    className="relative group/subsub hover:bg-[rgba(255,100,100,0.8)]"
+                                    className="relative group/subsub"
                                   >
                                     <Link
                                       href={subsubitem.path}
@@ -586,7 +611,7 @@ const Header = () => {
                                       {subsubitem.submenu &&
                                         subsubitem.submenu.length > 0 && (
                                           <FaChevronDown
-                                            className="ml-2 text-xs transform -rotate-90 flex-shrink-0 subsub-chevron"
+                                            className="ml-2 text-xs transform -rotate-90 flex-shrink-0 subsubChevron"
                                             onClick={(e) => {
                                               // 링크 클릭을 방지하고 하위 메뉴만 토글
                                               e.preventDefault();
@@ -698,7 +723,7 @@ const Header = () => {
                         <div key={subindex}>
                           <Link
                             href={subitem.path}
-                            className={`block py-2 flex justify-between items-center ${
+                            className={`flex py-2 justify-between items-center ${
                               scrolled
                                 ? "text-blue-700 hover:text-blue-900"
                                 : "text-blue-200 hover:text-white"
@@ -720,7 +745,7 @@ const Header = () => {
                                   <div key={subsubindex}>
                                     <Link
                                       href={subsubitem.path}
-                                      className={`block py-2 flex justify-between items-center ${
+                                      className={`flex py-2 justify-between items-center ${
                                         scrolled
                                           ? "text-blue-600 hover:text-blue-800"
                                           : "text-blue-300 hover:text-white"
@@ -745,7 +770,7 @@ const Header = () => {
                                               <Link
                                                 key={level4Index}
                                                 href={level4Item.path}
-                                                className={`block py-2 ${
+                                                className={`flex py-2 ${
                                                   scrolled
                                                     ? "text-blue-500 hover:text-blue-700"
                                                     : "text-blue-400 hover:text-white"

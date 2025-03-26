@@ -453,7 +453,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution5.png')`,
+                        backgroundImage: `url('/images/solutions/solution8.png')`,
                       }}
                     ></div>
                   </div>
