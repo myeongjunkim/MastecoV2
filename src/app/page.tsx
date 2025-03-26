@@ -316,6 +316,16 @@ export default function Home() {
           transform: translateX(100px);
         }
 
+        .slide-left-element-solution {
+          transform: translateX(-400px);
+          transition: transform 1s;
+        }
+
+        .slide-right-element-solution {
+          transform: translateX(400px);
+          transition: transform 1s;
+        }
+
         .scale-up-element {
           transform: scale(0.9);
         }
@@ -449,7 +459,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-right-element"
+                  className="md:w-1/2 flex items-center bg-white slide-right-element slide-right-element-solution"
                   data-fade-index="2"
                 >
                   <div className="p-8 md:p-16">
@@ -491,7 +501,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-left-element"
+                  className="md:w-1/2 flex items-center bg-white slide-left-element slide-left-element-solution"
                   data-fade-index="4"
                 >
                   <div className="p-8 md:p-16">
@@ -533,7 +543,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-right-element"
+                  className="md:w-1/2 flex items-center bg-white slide-right-element slide-right-element-solution"
                   data-fade-index="6"
                 >
                   <div className="p-8 md:p-16">
@@ -574,7 +584,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-left-element"
+                  className="md:w-1/2 flex items-center bg-white slide-left-element slide-left-element-solution"
                   data-fade-index="8"
                 >
                   <div className="p-8 md:p-16">
