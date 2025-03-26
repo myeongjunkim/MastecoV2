@@ -3,9 +3,42 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPen } from "react-icons/fa";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  // 캐러셀을 위한 상태 변수 추가
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // 산업 분야 이미지 배열
+  const industryImages = [
+    "/images/solutions/industry1.png",
+    "/images/solutions/industry2.png",
+    "/images/solutions/industry3.png",
+  ];
+
+  // 다음 이미지로 이동하는 함수
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === industryImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // 이전 이미지로 이동하는 함수
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? industryImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  // 자동 이미지 전환 효과
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      nextImage();
+    }, 3000); // 3초마다 이미지 전환
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   // Intersection Observer를 사용하여 스크롤 애니메이션 적용
   useEffect(() => {
     const fadeElements = document.querySelectorAll(".fade-in-element");
@@ -410,7 +443,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/industry/Visual 01.png')`,
+                        backgroundImage: `url('/images/solutions/solution5.png')`,
                       }}
                     ></div>
                   </div>
@@ -452,7 +485,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/industry/Visual 02.png')`,
+                        backgroundImage: `url('/images/solutions/solution6.png')`,
                       }}
                     ></div>
                   </div>
@@ -494,7 +527,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/industry/Visual 03.png')`,
+                        backgroundImage: `url('/images/solutions/solution7.png')`,
                       }}
                     ></div>
                   </div>
@@ -596,13 +629,79 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row-reverse">
             <div className="md:w-1/2 slide-right-element" data-fade-index="23">
+              {/* 기존 단일 이미지 대신 캐러셀 구현 */}
               <div className="h-[400px] relative overflow-hidden group">
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
-                  style={{
-                    backgroundImage: `url('/images/industry/masteco-building.jpg')`,
-                  }}
-                ></div>
+                {/* 캐러셀 이미지 */}
+                {industryImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform ${
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{
+                      backgroundImage: `url('${image}')`,
+                      transition: "opacity 0.8s ease-in-out",
+                    }}
+                  ></div>
+                ))}
+
+                {/* 컨트롤러 (화살표 + 인덱스) - 좌측 하단에 배치 */}
+                <div className="absolute left-6 bottom-6 flex items-center z-10 space-x-4">
+                  {/* 이전 화살표 */}
+                  <button
+                    onClick={prevImage}
+                    className="text-white transition-transform hover:scale-110"
+                    aria-label="이전 이미지"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* 다음 화살표 */}
+                  <button
+                    onClick={nextImage}
+                    className="text-white transition-transform hover:scale-110"
+                    aria-label="다음 이미지"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* 페이지 인디케이터 */}
+                  <div className="text-white text-lg font-medium ml-2">
+                    <span className="text-white">
+                      {String(currentImageIndex + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-gray-400">
+                      {" "}
+                      / {String(industryImages.length).padStart(2, "0")}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
