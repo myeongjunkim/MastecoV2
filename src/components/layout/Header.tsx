@@ -127,68 +127,68 @@ const Header = () => {
             {
               title: "친환경 녹색제품 스프링클러 (KFI)",
               path: "/products/sprinkler/eco-green",
-              submenu: [
-                {
-                  title: "저압용 모델",
-                  path: "/products/sprinkler/eco-green/low-pressure",
-                },
-                {
-                  title: "고압용 모델",
-                  path: "/products/sprinkler/eco-green/high-pressure",
-                },
-                {
-                  title: "산업용 모델",
-                  path: "/products/sprinkler/eco-green/industrial",
-                },
-                {
-                  title: "특수환경용 모델",
-                  path: "/products/sprinkler/eco-green/special",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "저압용 모델",
+              //     path: "/products/sprinkler/eco-green/low-pressure",
+              //   },
+              //   {
+              //     title: "고압용 모델",
+              //     path: "/products/sprinkler/eco-green/high-pressure",
+              //   },
+              //   {
+              //     title: "산업용 모델",
+              //     path: "/products/sprinkler/eco-green/industrial",
+              //   },
+              //   {
+              //     title: "특수환경용 모델",
+              //     path: "/products/sprinkler/eco-green/special",
+              //   },
+              // ],
             },
             {
               title: "엘보형 드라이펜던트 (KFI)",
               path: "/products/sprinkler/elbow-dry-pendant",
-              submenu: [
-                {
-                  title: "콘실드 타입",
-                  path: "/products/sprinkler/elbow-dry-pendant/concealed",
-                },
-                {
-                  title: "익스포즈드 타입",
-                  path: "/products/sprinkler/elbow-dry-pendant/exposed",
-                },
-                {
-                  title: "확장형 타입",
-                  path: "/products/sprinkler/elbow-dry-pendant/extended",
-                },
-                {
-                  title: "백콘 타입",
-                  path: "/products/sprinkler/elbow-dry-pendant/back-cone",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "콘실드 타입",
+              //     path: "/products/sprinkler/elbow-dry-pendant/concealed",
+              //   },
+              //   {
+              //     title: "익스포즈드 타입",
+              //     path: "/products/sprinkler/elbow-dry-pendant/exposed",
+              //   },
+              //   {
+              //     title: "확장형 타입",
+              //     path: "/products/sprinkler/elbow-dry-pendant/extended",
+              //   },
+              //   {
+              //     title: "백콘 타입",
+              //     path: "/products/sprinkler/elbow-dry-pendant/back-cone",
+              //   },
+              // ],
             },
             {
               title: "플러쉬형 스프링클러(KFI)",
               path: "/products/sprinkler/flush",
-              submenu: [
-                {
-                  title: "표준 반응형",
-                  path: "/products/sprinkler/flush/standard",
-                },
-                {
-                  title: "조기 반응형",
-                  path: "/products/sprinkler/flush/quick",
-                },
-                {
-                  title: "내부식성 모델",
-                  path: "/products/sprinkler/flush/corrosion-resistant",
-                },
-                {
-                  title: "장식용 모델",
-                  path: "/products/sprinkler/flush/decorative",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "표준 반응형",
+              //     path: "/products/sprinkler/flush/standard",
+              //   },
+              //   {
+              //     title: "조기 반응형",
+              //     path: "/products/sprinkler/flush/quick",
+              //   },
+              //   {
+              //     title: "내부식성 모델",
+              //     path: "/products/sprinkler/flush/corrosion-resistant",
+              //   },
+              //   {
+              //     title: "장식용 모델",
+              //     path: "/products/sprinkler/flush/decorative",
+              //   },
+              // ],
             },
             {
               title: "플러쉬형 드라이펜던트(KFI)",
@@ -223,68 +223,68 @@ const Header = () => {
             {
               title: "알람체크밸브 (UL/FM)",
               path: "/products/valve/alarm-check",
-              submenu: [
-                {
-                  title: "습식 알람밸브",
-                  path: "/products/valve/alarm-check/wet",
-                },
-                {
-                  title: "건식 알람밸브",
-                  path: "/products/valve/alarm-check/dry",
-                },
-                {
-                  title: "프리액션 알람밸브",
-                  path: "/products/valve/alarm-check/preaction",
-                },
-                {
-                  title: "조정형 알람밸브",
-                  path: "/products/valve/alarm-check/adjustable",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "습식 알람밸브",
+              //     path: "/products/valve/alarm-check/wet",
+              //   },
+              //   {
+              //     title: "건식 알람밸브",
+              //     path: "/products/valve/alarm-check/dry",
+              //   },
+              //   {
+              //     title: "프리액션 알람밸브",
+              //     path: "/products/valve/alarm-check/preaction",
+              //   },
+              //   {
+              //     title: "조정형 알람밸브",
+              //     path: "/products/valve/alarm-check/adjustable",
+              //   },
+              // ],
             },
             {
               title: "알람밸브 플랜지 타입 (KFI)",
               path: "/products/valve/alarm-flange",
-              submenu: [
-                {
-                  title: "4인치 플랜지 타입",
-                  path: "/products/valve/alarm-flange/4inch",
-                },
-                {
-                  title: "6인치 플랜지 타입",
-                  path: "/products/valve/alarm-flange/6inch",
-                },
-                {
-                  title: "8인치 플랜지 타입",
-                  path: "/products/valve/alarm-flange/8inch",
-                },
-                {
-                  title: "특수 플랜지 타입",
-                  path: "/products/valve/alarm-flange/special",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "4인치 플랜지 타입",
+              //     path: "/products/valve/alarm-flange/4inch",
+              //   },
+              //   {
+              //     title: "6인치 플랜지 타입",
+              //     path: "/products/valve/alarm-flange/6inch",
+              //   },
+              //   {
+              //     title: "8인치 플랜지 타입",
+              //     path: "/products/valve/alarm-flange/8inch",
+              //   },
+              //   {
+              //     title: "특수 플랜지 타입",
+              //     path: "/products/valve/alarm-flange/special",
+              //   },
+              // ],
             },
             {
               title: "알람밸브 그루브 타입 (KFI)",
               path: "/products/valve/alarm-groove",
-              submenu: [
-                {
-                  title: "4인치 그루브 타입",
-                  path: "/products/valve/alarm-groove/4inch",
-                },
-                {
-                  title: "6인치 그루브 타입",
-                  path: "/products/valve/alarm-groove/6inch",
-                },
-                {
-                  title: "8인치 그루브 타입",
-                  path: "/products/valve/alarm-groove/8inch",
-                },
-                {
-                  title: "특수 그루브 타입",
-                  path: "/products/valve/alarm-groove/special",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "4인치 그루브 타입",
+              //     path: "/products/valve/alarm-groove/4inch",
+              //   },
+              //   {
+              //     title: "6인치 그루브 타입",
+              //     path: "/products/valve/alarm-groove/6inch",
+              //   },
+              //   {
+              //     title: "8인치 그루브 타입",
+              //     path: "/products/valve/alarm-groove/8inch",
+              //   },
+              //   {
+              //     title: "특수 그루브 타입",
+              //     path: "/products/valve/alarm-groove/special",
+              //   },
+              // ],
             },
             {
               title: "준비작동식 밸브 (KFI)",
@@ -301,112 +301,112 @@ const Header = () => {
             {
               title: "MG-541 시스템(IG-100)",
               path: "/products/gaseous/mg-541-ig100",
-              submenu: [
-                {
-                  title: "MG-541 실린더 어셈블리",
-                  path: "/products/gaseous/mg-541-ig100/cylinder",
-                },
-                {
-                  title: "MG-541 솔레노이드 밸브",
-                  path: "/products/gaseous/mg-541-ig100/solenoid",
-                },
-                {
-                  title: "MG-541 방출 노즐",
-                  path: "/products/gaseous/mg-541-ig100/nozzle",
-                },
-                {
-                  title: "MG-541 압력 스위치",
-                  path: "/products/gaseous/mg-541-ig100/pressure-switch",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "MG-541 실린더 어셈블리",
+              //     path: "/products/gaseous/mg-541-ig100/cylinder",
+              //   },
+              //   {
+              //     title: "MG-541 솔레노이드 밸브",
+              //     path: "/products/gaseous/mg-541-ig100/solenoid",
+              //   },
+              //   {
+              //     title: "MG-541 방출 노즐",
+              //     path: "/products/gaseous/mg-541-ig100/nozzle",
+              //   },
+              //   {
+              //     title: "MG-541 압력 스위치",
+              //     path: "/products/gaseous/mg-541-ig100/pressure-switch",
+              //   },
+              // ],
             },
             {
               title: "MG-541 시스템(IG-541)",
               path: "/products/gaseous/mg-541-ig541",
-              submenu: [
-                {
-                  title: "MG-541 실린더 어셈블리(IG-541)",
-                  path: "/products/gaseous/mg-541-ig541/cylinder",
-                },
-                {
-                  title: "MG-541 압력 레귤레이터",
-                  path: "/products/gaseous/mg-541-ig541/regulator",
-                },
-                {
-                  title: "MG-541 방출 노즐(IG-541)",
-                  path: "/products/gaseous/mg-541-ig541/nozzle",
-                },
-                {
-                  title: "MG-541 체크 밸브",
-                  path: "/products/gaseous/mg-541-ig541/check-valve",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "MG-541 실린더 어셈블리(IG-541)",
+              //     path: "/products/gaseous/mg-541-ig541/cylinder",
+              //   },
+              //   {
+              //     title: "MG-541 압력 레귤레이터",
+              //     path: "/products/gaseous/mg-541-ig541/regulator",
+              //   },
+              //   {
+              //     title: "MG-541 방출 노즐(IG-541)",
+              //     path: "/products/gaseous/mg-541-ig541/nozzle",
+              //   },
+              //   {
+              //     title: "MG-541 체크 밸브",
+              //     path: "/products/gaseous/mg-541-ig541/check-valve",
+              //   },
+              // ],
             },
             {
               title: "MG-5112 시스템(IG-5.1.12)",
               path: "/products/gaseous/mg-5112",
-              submenu: [
-                {
-                  title: "MG-5112 실린더(200bar)",
-                  path: "/products/gaseous/mg-5112/cylinder-200bar",
-                },
-                {
-                  title: "MG-5112 실린더(300bar)",
-                  path: "/products/gaseous/mg-5112/cylinder-300bar",
-                },
-                {
-                  title: "MG-5112 방출 헤드 밸브",
-                  path: "/products/gaseous/mg-5112/discharge-head",
-                },
-                {
-                  title: "MG-5112 컬렉터",
-                  path: "/products/gaseous/mg-5112/collector",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "MG-5112 실린더(200bar)",
+              //     path: "/products/gaseous/mg-5112/cylinder-200bar",
+              //   },
+              //   {
+              //     title: "MG-5112 실린더(300bar)",
+              //     path: "/products/gaseous/mg-5112/cylinder-300bar",
+              //   },
+              //   {
+              //     title: "MG-5112 방출 헤드 밸브",
+              //     path: "/products/gaseous/mg-5112/discharge-head",
+              //   },
+              //   {
+              //     title: "MG-5112 컬렉터",
+              //     path: "/products/gaseous/mg-5112/collector",
+              //   },
+              // ],
             },
             {
               title: "MG-227 시스템(HFC-227ea)",
               path: "/products/gaseous/mg-227",
-              submenu: [
-                {
-                  title: "MG-227 실린더 어셈블리",
-                  path: "/products/gaseous/mg-227/cylinder",
-                },
-                {
-                  title: "MG-227 방출 밸브",
-                  path: "/products/gaseous/mg-227/discharge-valve",
-                },
-                {
-                  title: "MG-227 압력 게이지",
-                  path: "/products/gaseous/mg-227/pressure-gauge",
-                },
-                {
-                  title: "MG-227 호스 어셈블리",
-                  path: "/products/gaseous/mg-227/hose-assembly",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "MG-227 실린더 어셈블리",
+              //     path: "/products/gaseous/mg-227/cylinder",
+              //   },
+              //   {
+              //     title: "MG-227 방출 밸브",
+              //     path: "/products/gaseous/mg-227/discharge-valve",
+              //   },
+              //   {
+              //     title: "MG-227 압력 게이지",
+              //     path: "/products/gaseous/mg-227/pressure-gauge",
+              //   },
+              //   {
+              //     title: "MG-227 호스 어셈블리",
+              //     path: "/products/gaseous/mg-227/hose-assembly",
+              //   },
+              // ],
             },
             {
               title: "MG-125시스템(HFC-125)",
               path: "/products/gaseous/mg-125",
-              submenu: [
-                {
-                  title: "MG-125 실린더(42L)",
-                  path: "/products/gaseous/mg-125/cylinder-42l",
-                },
-                {
-                  title: "MG-125 실린더(67L)",
-                  path: "/products/gaseous/mg-125/cylinder-67l",
-                },
-                {
-                  title: "MG-125 방출 밸브",
-                  path: "/products/gaseous/mg-125/valve",
-                },
-                {
-                  title: "MG-125 압력 스위치",
-                  path: "/products/gaseous/mg-125/pressure-switch",
-                },
-              ],
+              // submenu: [
+              //   {
+              //     title: "MG-125 실린더(42L)",
+              //     path: "/products/gaseous/mg-125/cylinder-42l",
+              //   },
+              //   {
+              //     title: "MG-125 실린더(67L)",
+              //     path: "/products/gaseous/mg-125/cylinder-67l",
+              //   },
+              //   {
+              //     title: "MG-125 방출 밸브",
+              //     path: "/products/gaseous/mg-125/valve",
+              //   },
+              //   {
+              //     title: "MG-125 압력 스위치",
+              //     path: "/products/gaseous/mg-125/pressure-switch",
+              //   },
+              // ],
             },
           ],
         },
@@ -516,30 +516,19 @@ const Header = () => {
         }
 
         /* 4단계 메뉴 항목은 기본적으로 배경색 없음 */
-        .submenu-level4 a {
-          background-color: transparent !important;
-        }
 
         /* 4단계 메뉴 항목은 호버 시에만 배경색 변경 */
-        .submenu-level4 a:hover {
-          background-color: rgba(255, 100, 100, 0.95) !important;
-        }
 
         /* 그룹 자체의 배경색은 유지 */
-        .group\/subsub {
-          background-color: transparent !important;
-        }
 
-        /* 모든 메뉴 항목의 hover 상태 확인 */
-        .menu-debug-box {
-          position: fixed;
-          bottom: 0;
-          right: 0;
-          background: rgba(0, 0, 0, 0.7);
-          color: white;
-          padding: 8px;
-          font-size: 12px;
-          z-index: 9999;
+        /* 메뉴 호버시 커서 포인터 추가 */
+        .group:hover,
+        .group\/sub:hover,
+        .group\/subsub:hover,
+        nav a:hover,
+        .submenu-level4 a:hover,
+        button:hover {
+          cursor: pointer !important;
         }
       `}</style>
 
@@ -559,7 +548,7 @@ const Header = () => {
             <div key={index} className="relative group">
               <Link
                 href={item.path}
-                className={`font-medium flex items-center ${
+                className={`font-medium flex items-center cursor-pointer ${
                   scrolled
                     ? "text-blue-900 hover:text-blue-700"
                     : "text-white hover:text-blue-300"
@@ -579,7 +568,7 @@ const Header = () => {
                       <div key={subindex} className="relative group/sub">
                         <Link
                           href={subitem.path}
-                          className="block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors flex items-center justify-between whitespace-nowrap"
+                          className={`px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors flex items-center justify-between whitespace-nowrap`}
                         >
                           {subitem.title}
                           {subitem.submenu && subitem.submenu.length > 0 && (
@@ -605,7 +594,7 @@ const Header = () => {
                                   >
                                     <Link
                                       href={subsubitem.path}
-                                      className="block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors whitespace-nowrap flex items-center justify-between"
+                                      className={`block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors whitespace-nowrap flex items-center justify-between`}
                                     >
                                       {subsubitem.title}
                                       {subsubitem.submenu &&
@@ -643,7 +632,14 @@ const Header = () => {
                                                 <Link
                                                   key={level4Index}
                                                   href={level4Item.path}
-                                                  className="block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors whitespace-nowrap"
+                                                  className={`flex py-2 hover:cursor-pointer ${
+                                                    scrolled
+                                                      ? "text-blue-500 hover:text-blue-700"
+                                                      : "text-blue-400 hover:text-white"
+                                                  }`}
+                                                  onClick={() =>
+                                                    setIsMenuOpen(false)
+                                                  }
                                                 >
                                                   {level4Item.title}
                                                 </Link>
@@ -689,14 +685,33 @@ const Header = () => {
 
       {isMenuOpen && (
         <div
-          style={{ top: scrolled ? "64px" : "80px" }}
-          className={`md:hidden fixed left-0 right-0 w-full h-[calc(100vh-80px)] z-40 ${
+          className={`md:hidden fixed top-0 left-0 right-0 w-full h-screen z-50 ${
             scrolled
               ? "bg-white bg-opacity-95 text-blue-900"
               : "bg-blue-900 bg-opacity-90 text-white"
           } shadow-lg overflow-y-auto`}
         >
           <div className="container mx-auto px-4 py-6">
+            <div className="flex justify-between items-center mb-6 pb-4 ">
+              <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                <Image
+                  src="/images/logos/image.png"
+                  alt="MASTECO Logo"
+                  width={150}
+                  height={40}
+                  className="h-8 w-auto"
+                />
+              </Link>
+              <button
+                className={`focus:outline-none ${
+                  scrolled ? "text-blue-900" : "text-white"
+                }`}
+                onClick={toggleMenu}
+              >
+                <FaTimes size={24} />
+              </button>
+            </div>
+
             <nav className="flex flex-col space-y-6">
               {menuItems.map((item, index) => (
                 <div key={index} className="space-y-2">
@@ -723,7 +738,7 @@ const Header = () => {
                         <div key={subindex}>
                           <Link
                             href={subitem.path}
-                            className={`flex py-2 justify-between items-center ${
+                            className={`flex py-2 justify-between items-center hover:cursor-pointer ${
                               scrolled
                                 ? "text-blue-700 hover:text-blue-900"
                                 : "text-blue-200 hover:text-white"
@@ -745,7 +760,7 @@ const Header = () => {
                                   <div key={subsubindex}>
                                     <Link
                                       href={subsubitem.path}
-                                      className={`flex py-2 justify-between items-center ${
+                                      className={`flex py-2 justify-between items-center hover:cursor-pointer ${
                                         scrolled
                                           ? "text-blue-600 hover:text-blue-800"
                                           : "text-blue-300 hover:text-white"
@@ -770,7 +785,7 @@ const Header = () => {
                                               <Link
                                                 key={level4Index}
                                                 href={level4Item.path}
-                                                className={`flex py-2 ${
+                                                className={`flex py-2 hover:cursor-pointer ${
                                                   scrolled
                                                     ? "text-blue-500 hover:text-blue-700"
                                                     : "text-blue-400 hover:text-white"
@@ -807,45 +822,6 @@ const Header = () => {
           </div>
         </div>
       )}
-
-      {/* 개발용 디버깅 도구 - 프로덕션에서는 제거 */}
-      {process.env.NODE_ENV === "development" && (
-        <div id="hover-debug" className="menu-debug-box"></div>
-      )}
-
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-          // 개발 모드에서만 실행
-          if (process.env.NODE_ENV === 'development') {
-            document.addEventListener('DOMContentLoaded', () => {
-              const debug = document.getElementById('hover-debug');
-              
-              // 3단계 메뉴 요소에 마우스 진입/이탈 감지
-              document.querySelectorAll('.group\\/subsub').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                  if (debug) debug.textContent = '3단계 메뉴 hover: ' + el.textContent?.trim();
-                  
-                  // 하단 드롭다운이 아닌 경우에만 호버로 메뉴 표시 강제
-                  if (el.dataset.dropDirection !== 'bottom') {
-                    el.classList.add('group-hover-subsub');
-                  }
-                });
-                
-                el.addEventListener('mouseleave', () => {
-                  if (debug) debug.textContent = '3단계 메뉴 hover 해제';
-                  
-                  // 하단 드롭다운이 아닌 경우에만 호버로 메뉴 숨김 강제
-                  if (el.dataset.dropDirection !== 'bottom') {
-                    el.classList.remove('group-hover-subsub');
-                  }
-                });
-              });
-            });
-          }
-        `,
-        }}
-      />
     </header>
   );
 };

@@ -4,6 +4,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPen } from "react-icons/fa";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   // 캐러셀을 위한 상태 변수 추가
@@ -317,12 +318,12 @@ export default function Home() {
         }
 
         .slide-left-element-solution {
-          transform: translateX(-400px);
+          transform: translateX(-20vw);
           transition: transform 1s;
         }
 
         .slide-right-element-solution {
-          transform: translateX(400px);
+          transform: translateX(20vw);
           transition: transform 1s;
         }
 
@@ -756,7 +757,7 @@ export default function Home() {
                 MASTECO <span className="font-black">INDUSTRY</span>
               </h2>
               <span
-                className="text-sm text-gray-600 ml-2 fade-in-element"
+                className="text-sm text-gray-600 ml-2 fade-in-element min-w-fit"
                 data-fade-index="26"
               >
                 마스테코 산업분야
@@ -1061,6 +1062,36 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* 고정된 문의하기 버튼 그룹 */}
+      <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
+        <Link
+          href="/contact"
+          className="flex flex-col items-center justify-center bg-blue-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
+        >
+          <FaPhone className="mb-2 md:mb-3 text-lg md:text-xl" />
+          <span className="text-xs md:text-sm font-medium">문의하기</span>
+        </Link>
+        <Link
+          href="/contact/email"
+          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
+        >
+          <FaEnvelope className="mb-2 md:mb-3 text-lg md:text-xl" />
+          <span className="text-xs md:text-sm font-medium">뉴스레터</span>
+        </Link>
+        <Link
+          href="/contact/chat"
+          className="flex items-center justify-center bg-yellow-400 text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg"
+        >
+          <Image
+            src="/images/news/kakaotalk.svg"
+            alt="카카오톡"
+            width={20}
+            height={20}
+            className="w-full h-full object-contain"
+          />
+        </Link>
       </div>
 
       <style jsx global>{`

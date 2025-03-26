@@ -1,14 +1,7 @@
 "use client";
 
 import { CSSProperties, useState, useEffect, useRef, useCallback } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaPhone,
-  FaEnvelope,
-} from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function HeroSection() {
   // 현재 표시 중인 슬라이드 인덱스
@@ -388,38 +381,6 @@ export default function HeroSection() {
             </span>
           </div>
         </div>
-
-        {/* 우측 하단 문의하기 버튼 그룹은 외부로 분리 */}
-      </div>
-
-      {/* 고정된 문의하기 버튼 그룹 */}
-      <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
-        <Link
-          href="/contact"
-          className="flex flex-col items-center justify-center bg-blue-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
-        >
-          <FaPhone className="mb-2 md:mb-3 text-lg md:text-xl" />
-          <span className="text-xs md:text-sm font-medium">문의하기</span>
-        </Link>
-        <Link
-          href="/contact/email"
-          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
-        >
-          <FaEnvelope className="mb-2 md:mb-3 text-lg md:text-xl" />
-          <span className="text-xs md:text-sm font-medium">뉴스레터</span>
-        </Link>
-        <Link
-          href="/contact/chat"
-          className="flex items-center justify-center bg-yellow-400 text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg"
-        >
-          <Image
-            src="/images/news/kakaotalk.svg"
-            alt="카카오톡"
-            width={20}
-            height={20}
-            className="w-full h-full object-contain"
-          />
-        </Link>
       </div>
     </>
   );
