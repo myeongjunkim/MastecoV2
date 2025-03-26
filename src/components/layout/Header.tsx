@@ -223,15 +223,15 @@ const Header = () => {
                       <div key={subindex} className="relative group/sub">
                         <Link
                           href={subitem.path}
-                          className="block px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors flex items-center justify-between whitespace-nowrap"
+                          className="px-4 py-2 hover:bg-[rgba(255,100,100,0.95)] transition-colors flex items-center justify-between whitespace-nowrap"
                         >
                           {subitem.title}
-                          {subitem.submenu?.length > 0 && (
+                          {subitem.submenu && subitem.submenu.length > 0 && (
                             <FaChevronDown className="ml-2 text-xs transform -rotate-90 flex-shrink-0" />
                           )}
                         </Link>
 
-                        {subitem.submenu?.length > 0 && (
+                        {subitem.submenu && subitem.submenu.length > 0 && (
                           <div className="absolute left-full top-0 min-w-[14rem] w-fit hidden group-hover/sub:block">
                             <div className="py-2 bg-[rgba(210,60,60,0.9)] text-white rounded-md shadow-lg ml-2">
                               {subitem.submenu.map(
@@ -325,12 +325,12 @@ const Header = () => {
                             }
                           >
                             - {subitem.title}
-                            {subitem.submenu?.length > 0 && (
+                            {subitem.submenu && subitem.submenu.length > 0 && (
                               <FaChevronDown className="text-xs" />
                             )}
                           </Link>
 
-                          {subitem.submenu?.length > 0 && (
+                          {subitem.submenu && subitem.submenu.length > 0 && (
                             <div className="pl-4 space-y-2 mt-2">
                               {subitem.submenu.map(
                                 (subsubitem, subsubindex) => (
