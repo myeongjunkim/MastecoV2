@@ -26,12 +26,12 @@ export default function HeroSection() {
       part2: "CARRIED ON TODAY",
     },
     {
-      part1: "TOWARDS GLOBAL LEADER",
-      part2: "IN FIRE PROTECTION PRODUCTS",
+      part1: "TOWARDS GLOBAL LEADER IN FIRE",
+      part2: "PROTECTION PRODUCTS",
     },
     {
-      part1: "TRUSTED PROTECTION",
-      part2: "FOR LIFE AND PROPERTY",
+      part1: "TRUSTED PROTECTION FOR LIFE",
+      part2: "AND PROPERTY",
     },
   ];
 
