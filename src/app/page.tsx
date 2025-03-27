@@ -1067,30 +1067,92 @@ export default function Home() {
       {/* 고정된 문의하기 버튼 그룹 */}
       <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
         <Link
-          href="/contact"
-          className="flex flex-col items-center justify-center bg-blue-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
+          href="/products/parts"
+          className="flex flex-col items-center justify-center bg-teal-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
         >
-          <FaPhone className="mb-2 md:mb-3 text-lg md:text-xl" />
-          <span className="text-xs md:text-sm font-medium">문의하기</span>
+          <div className="relative mt-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 mb-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+              />
+            </svg>
+          </div>
+          <span className="text-xs md:text-sm font-medium">A/S부품구매</span>
         </Link>
         <Link
-          href="/contact/email"
-          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg"
+          href="/certification"
+          className="flex flex-col items-center justify-center bg-blue-700 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
         >
-          <FaEnvelope className="mb-2 md:mb-3 text-lg md:text-xl" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mt-2 mb-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+            />
+          </svg>
+          <span className="text-xs md:text-sm font-medium">형식승인서</span>
+        </Link>
+        <Link
+          href="/catalog"
+          className="flex flex-col items-center justify-center bg-blue-500 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mt-2 mb-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+            />
+          </svg>
+          <span className="text-xs md:text-sm font-medium text-center">
+            카탈로그
+            <br />
+            자재승인서
+          </span>
+        </Link>
+        <Link
+          href="/newsletter"
+          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
+        >
+          <FaEnvelope className="h-6 w-6 mt-2 mb-1" />
           <span className="text-xs md:text-sm font-medium">뉴스레터</span>
         </Link>
         <Link
-          href="/contact/chat"
-          className="flex items-center justify-center bg-yellow-400 text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg"
+          href="/contact"
+          className="flex flex-col items-center justify-center bg-[#FFE812] text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg rounded-lg"
         >
-          <Image
-            src="/images/news/kakaotalk.svg"
-            alt="카카오톡"
-            width={20}
-            height={20}
-            className="w-full h-full object-contain"
-          />
+          <div className="mt-2 mb-1 w-6 h-6 md:w-10 md:h-10 flex items-center justify-center">
+            <Image
+              src="/images/news/kakaotalk.svg"
+              alt="고객문의"
+              width={22}
+              height={22}
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="text-xs md:text-sm font-medium">고객문의</span>
         </Link>
       </div>
 
