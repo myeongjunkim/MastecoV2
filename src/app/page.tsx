@@ -3,12 +3,71 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPen } from "react-icons/fa";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  // 인트로 비디오를 위한 상태 변수 추가
+  const [showIntro, setShowIntro] = useState(true);
+  const [videoFading, setVideoFading] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   // 캐러셀을 위한 상태 변수 추가
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // 비디오 설정 및 종료 후 화면 전환을 위한 useEffect
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    if (videoElement) {
+      // 비디오 로드 후 1.5배속으로 설정
+      videoElement.playbackRate = 2;
+
+      // 비디오가 끝나기 1초 전에 페이드 아웃 시작
+      const handleTimeUpdate = () => {
+        if (videoElement.duration - videoElement.currentTime < 1) {
+          setVideoFading(true);
+        }
+      };
+
+      const handleVideoEnd = () => {
+        // 비디오 종료 1초 후 컴포넌트 제거
+        setTimeout(() => {
+          setShowIntro(false);
+        }, 1000);
+      };
+
+      videoElement.addEventListener("timeupdate", handleTimeUpdate);
+      videoElement.addEventListener("ended", handleVideoEnd);
+
+      // 클린업 함수
+      return () => {
+        videoElement.removeEventListener("timeupdate", handleTimeUpdate);
+        videoElement.removeEventListener("ended", handleVideoEnd);
+      };
+    }
+  }, []);
+
+  // 스크롤 이벤트를 감지하여 비디오를 숨기는 효과 추가
+  useEffect(() => {
+    const handleScroll = () => {
+      // 스크롤 위치가 100px 이상이면 비디오 페이드 아웃 시작
+      if (window.scrollY > 100 && showIntro) {
+        setVideoFading(true);
+
+        // 페이드 아웃 후 비디오 완전히 제거
+        setTimeout(() => {
+          setShowIntro(false);
+        }, 1000);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showIntro]);
 
   // 산업 분야 이미지 배열
   const industryImages = [
@@ -355,10 +414,72 @@ export default function Home() {
         .section-trigger {
           overflow: hidden;
         }
+
+        /* 인트로 비디오 스타일 */
+        .intro-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 50; /* 헤더보다 낮은 z-index로 변경 */
+          background-color: #000;
+          opacity: 1; /* fade in 효과 제거 */
+          transition: opacity 1s ease-out;
+        }
+
+        .intro-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .intro-container.fade-out {
+          opacity: 0;
+          transition: opacity 1s ease-out;
+        }
+
+        /* 헤더 스타일 - 스크롤시에도 항상 보이도록 */
+        header {
+          position: fixed;
+          z-index: 1001; /* 비디오와 hero 섹션보다 위에 표시 */
+        }
+
+        /* Hero 섹션도 전체 화면을 차지하도록 설정 */
+        .hero-fullscreen {
+          min-height: 100vh;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 49; /* 헤더보다 낮은 z-index로 변경 */
+          margin-top: 0;
+          padding-top: 0;
+        }
       `}</style>
 
+      {/* 인트로 비디오 컴포넌트 */}
+      {showIntro && (
+        <div className={`intro-container ${videoFading ? "fade-out" : ""}`}>
+          <video
+            ref={videoRef}
+            className="intro-video"
+            autoPlay
+            muted
+            playsInline
+            src="/images/intro/masteco_video.mp4"
+          >
+            <source src="/images/intro/masteco_video.mp4" type="video/mp4" />
+            브라우저가 비디오 태그를 지원하지 않습니다.
+          </video>
+        </div>
+      )}
+
       {/* 히어로 섹션 - 클라이언트 컴포넌트로 분리 */}
+      {/* <div className="hero-fullscreen"> */}
       <HeroSection />
+      {/* </div> */}
 
       {/* 2. 회사 설명 섹션 - 블루 박스 */}
       <div className="relative py-12 bg-white">
@@ -1065,15 +1186,37 @@ export default function Home() {
       </div>
 
       {/* 고정된 문의하기 버튼 그룹 */}
-      <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
-        <Link
-          href="/products/parts"
-          className="flex flex-col items-center justify-center bg-teal-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
-        >
-          <div className="relative mt-2">
+      {!showIntro && (
+        <div className="fixed bottom-4 sm:bottom-10 right-4 sm:right-10 z-50 flex flex-col">
+          <Link
+            href="/products/parts"
+            className="flex flex-col items-center justify-center bg-teal-600 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
+          >
+            <div className="relative mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mb-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+                />
+              </svg>
+            </div>
+            <span className="text-xs md:text-sm font-medium">A/S부품구매</span>
+          </Link>
+          <Link
+            href="/certification"
+            className="flex flex-col items-center justify-center bg-blue-700 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mb-1"
+              className="h-6 w-6 mt-2 mb-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -1082,79 +1225,59 @@ export default function Home() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
               />
             </svg>
-          </div>
-          <span className="text-xs md:text-sm font-medium">A/S부품구매</span>
-        </Link>
-        <Link
-          href="/certification"
-          className="flex flex-col items-center justify-center bg-blue-700 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mt-2 mb-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
+            <span className="text-xs md:text-sm font-medium">형식승인서</span>
+          </Link>
+          <Link
+            href="/catalog"
+            className="flex flex-col items-center justify-center bg-blue-500 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-            />
-          </svg>
-          <span className="text-xs md:text-sm font-medium">형식승인서</span>
-        </Link>
-        <Link
-          href="/catalog"
-          className="flex flex-col items-center justify-center bg-blue-500 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mt-2 mb-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 mt-2 mb-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+              />
+            </svg>
+            <span className="text-xs md:text-sm font-medium text-center">
+              카탈로그
+              <br />
+              자재승인서
+            </span>
+          </Link>
+          <Link
+            href="/newsletter"
+            className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-            />
-          </svg>
-          <span className="text-xs md:text-sm font-medium text-center">
-            카탈로그
-            <br />
-            자재승인서
-          </span>
-        </Link>
-        <Link
-          href="/newsletter"
-          className="flex flex-col items-center justify-center bg-blue-800 text-white w-14 h-14 md:w-20 md:h-20 shadow-lg mb-1 rounded-lg"
-        >
-          <FaEnvelope className="h-6 w-6 mt-2 mb-1" />
-          <span className="text-xs md:text-sm font-medium">뉴스레터</span>
-        </Link>
-        <Link
-          href="/contact"
-          className="flex flex-col items-center justify-center bg-[#FFE812] text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg rounded-lg"
-        >
-          <div className="mt-2 mb-1 w-6 h-6 md:w-10 md:h-10 flex items-center justify-center">
-            <Image
-              src="/images/news/kakaotalk.svg"
-              alt="고객문의"
-              width={22}
-              height={22}
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <span className="text-xs md:text-sm font-medium">고객문의</span>
-        </Link>
-      </div>
+            <FaEnvelope className="h-6 w-6 mt-2 mb-1" />
+            <span className="text-xs md:text-sm font-medium">뉴스레터</span>
+          </Link>
+          <Link
+            href="/contact"
+            className="flex flex-col items-center justify-center bg-[#FFE812] text-yellow-900 w-14 h-14 md:w-20 md:h-20 shadow-lg rounded-lg"
+          >
+            <div className="mt-2 mb-1 w-6 h-6 md:w-10 md:h-10 flex items-center justify-center">
+              <Image
+                src="/images/news/kakaotalk.svg"
+                alt="고객문의"
+                width={22}
+                height={22}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-xs md:text-sm font-medium">고객문의</span>
+          </Link>
+        </div>
+      )}
 
       <style jsx global>{`
         .fade-in {

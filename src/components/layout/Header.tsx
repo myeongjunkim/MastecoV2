@@ -155,13 +155,22 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-[1001] transition-all duration-300 ${
         scrolled
           ? "bg-white text-blue-900 shadow-md py-3"
           : "bg-transparent text-white py-5"
       }`}
     >
       <style jsx global>{`
+        /* 헤더 고정 스타일 추가 */
+        header {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 100% !important;
+          z-index: 1001 !important; /* 다른 모든 요소보다 위에 오도록 설정 */
+        }
+
         /* 방향 전환을 위한 스타일 개선 - 하단 드롭다운 시 디자인 변경 */
         [data-drop-direction="bottom"] .submenu-level4 {
           position: static !important;
