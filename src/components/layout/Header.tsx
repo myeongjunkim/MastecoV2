@@ -111,330 +111,46 @@ const Header = () => {
       title: "회사소개",
       path: "/about",
       submenu: [
-        { title: "introduction", path: "/about/introduction" },
-        { title: "history", path: "/about/history" },
-        { title: "service", path: "/about/service" },
+        { title: "CEO 인사말", path: "/about/ceo" },
+        { title: "경영이념", path: "/about/philosophy" },
+        { title: "글로벌 네트워크", path: "/about/global-network" },
+        { title: "회사연혁", path: "/about/history" },
+        { title: "오시는 길", path: "/about/location" },
       ],
     },
     {
-      title: "제품정보",
+      title: "제품소개",
       path: "/products",
       submenu: [
+        { title: "소화기시스템", path: "/products/fire-extinguisher" },
         {
-          title: "스프링클러",
-          path: "/products/sprinkler",
-          submenu: [
-            {
-              title: "친환경 녹색제품 스프링클러 (KFI)",
-              path: "/products/sprinkler/eco-green",
-              // submenu: [
-              //   {
-              //     title: "저압용 모델",
-              //     path: "/products/sprinkler/eco-green/low-pressure",
-              //   },
-              //   {
-              //     title: "고압용 모델",
-              //     path: "/products/sprinkler/eco-green/high-pressure",
-              //   },
-              //   {
-              //     title: "산업용 모델",
-              //     path: "/products/sprinkler/eco-green/industrial",
-              //   },
-              //   {
-              //     title: "특수환경용 모델",
-              //     path: "/products/sprinkler/eco-green/special",
-              //   },
-              // ],
-            },
-            {
-              title: "엘보형 드라이펜던트 (KFI)",
-              path: "/products/sprinkler/elbow-dry-pendant",
-              // submenu: [
-              //   {
-              //     title: "콘실드 타입",
-              //     path: "/products/sprinkler/elbow-dry-pendant/concealed",
-              //   },
-              //   {
-              //     title: "익스포즈드 타입",
-              //     path: "/products/sprinkler/elbow-dry-pendant/exposed",
-              //   },
-              //   {
-              //     title: "확장형 타입",
-              //     path: "/products/sprinkler/elbow-dry-pendant/extended",
-              //   },
-              //   {
-              //     title: "백콘 타입",
-              //     path: "/products/sprinkler/elbow-dry-pendant/back-cone",
-              //   },
-              // ],
-            },
-            {
-              title: "플러쉬형 스프링클러(KFI)",
-              path: "/products/sprinkler/flush",
-              // submenu: [
-              //   {
-              //     title: "표준 반응형",
-              //     path: "/products/sprinkler/flush/standard",
-              //   },
-              //   {
-              //     title: "조기 반응형",
-              //     path: "/products/sprinkler/flush/quick",
-              //   },
-              //   {
-              //     title: "내부식성 모델",
-              //     path: "/products/sprinkler/flush/corrosion-resistant",
-              //   },
-              //   {
-              //     title: "장식용 모델",
-              //     path: "/products/sprinkler/flush/decorative",
-              //   },
-              // ],
-            },
-            {
-              title: "플러쉬형 드라이펜던트(KFI)",
-              path: "/products/sprinkler/flush-dry-pendant",
-            },
-            {
-              title: "유리벌브형 스프링클러(KFI)",
-              path: "/products/sprinkler/glass-bulb",
-            },
-            {
-              title: "플러쉬형 스프링클러(UL)",
-              path: "/products/sprinkler/flush-ul",
-            },
-            {
-              title: "유리벌브형 상향식(UL)",
-              path: "/products/sprinkler/glass-bulb-up-ul",
-            },
-            {
-              title: "유리벌브형 하향식(UL)",
-              path: "/products/sprinkler/glass-bulb-down-ul",
-            },
-            {
-              title: "유리벌브형 드라이펜던트(KFI)",
-              path: "/products/sprinkler/glass-bulb-dry-pendant",
-            },
-          ],
+          title: "부압식 소프링클러 시스템",
+          path: "/products/negative-pressure-sprinkler",
         },
-        {
-          title: "소방밸브",
-          path: "/products/valve",
-          submenu: [
-            {
-              title: "알람체크밸브 (UL/FM)",
-              path: "/products/valve/alarm-check",
-              // submenu: [
-              //   {
-              //     title: "습식 알람밸브",
-              //     path: "/products/valve/alarm-check/wet",
-              //   },
-              //   {
-              //     title: "건식 알람밸브",
-              //     path: "/products/valve/alarm-check/dry",
-              //   },
-              //   {
-              //     title: "프리액션 알람밸브",
-              //     path: "/products/valve/alarm-check/preaction",
-              //   },
-              //   {
-              //     title: "조정형 알람밸브",
-              //     path: "/products/valve/alarm-check/adjustable",
-              //   },
-              // ],
-            },
-            {
-              title: "알람밸브 플랜지 타입 (KFI)",
-              path: "/products/valve/alarm-flange",
-              // submenu: [
-              //   {
-              //     title: "4인치 플랜지 타입",
-              //     path: "/products/valve/alarm-flange/4inch",
-              //   },
-              //   {
-              //     title: "6인치 플랜지 타입",
-              //     path: "/products/valve/alarm-flange/6inch",
-              //   },
-              //   {
-              //     title: "8인치 플랜지 타입",
-              //     path: "/products/valve/alarm-flange/8inch",
-              //   },
-              //   {
-              //     title: "특수 플랜지 타입",
-              //     path: "/products/valve/alarm-flange/special",
-              //   },
-              // ],
-            },
-            {
-              title: "알람밸브 그루브 타입 (KFI)",
-              path: "/products/valve/alarm-groove",
-              // submenu: [
-              //   {
-              //     title: "4인치 그루브 타입",
-              //     path: "/products/valve/alarm-groove/4inch",
-              //   },
-              //   {
-              //     title: "6인치 그루브 타입",
-              //     path: "/products/valve/alarm-groove/6inch",
-              //   },
-              //   {
-              //     title: "8인치 그루브 타입",
-              //     path: "/products/valve/alarm-groove/8inch",
-              //   },
-              //   {
-              //     title: "특수 그루브 타입",
-              //     path: "/products/valve/alarm-groove/special",
-              //   },
-              // ],
-            },
-            {
-              title: "준비작동식 밸브 (KFI)",
-              path: "/products/valve/preaction",
-            },
-            { title: "체크밸브(UL/FM)", path: "/products/valve/check" },
-            { title: "델루지밸브", path: "/products/valve/deluge" },
-          ],
-        },
-        {
-          title: "가스계 소화설비",
-          path: "/products/gaseous",
-          submenu: [
-            {
-              title: "MG-541 시스템(IG-100)",
-              path: "/products/gaseous/mg-541-ig100",
-              // submenu: [
-              //   {
-              //     title: "MG-541 실린더 어셈블리",
-              //     path: "/products/gaseous/mg-541-ig100/cylinder",
-              //   },
-              //   {
-              //     title: "MG-541 솔레노이드 밸브",
-              //     path: "/products/gaseous/mg-541-ig100/solenoid",
-              //   },
-              //   {
-              //     title: "MG-541 방출 노즐",
-              //     path: "/products/gaseous/mg-541-ig100/nozzle",
-              //   },
-              //   {
-              //     title: "MG-541 압력 스위치",
-              //     path: "/products/gaseous/mg-541-ig100/pressure-switch",
-              //   },
-              // ],
-            },
-            {
-              title: "MG-541 시스템(IG-541)",
-              path: "/products/gaseous/mg-541-ig541",
-              // submenu: [
-              //   {
-              //     title: "MG-541 실린더 어셈블리(IG-541)",
-              //     path: "/products/gaseous/mg-541-ig541/cylinder",
-              //   },
-              //   {
-              //     title: "MG-541 압력 레귤레이터",
-              //     path: "/products/gaseous/mg-541-ig541/regulator",
-              //   },
-              //   {
-              //     title: "MG-541 방출 노즐(IG-541)",
-              //     path: "/products/gaseous/mg-541-ig541/nozzle",
-              //   },
-              //   {
-              //     title: "MG-541 체크 밸브",
-              //     path: "/products/gaseous/mg-541-ig541/check-valve",
-              //   },
-              // ],
-            },
-            {
-              title: "MG-5112 시스템(IG-5.1.12)",
-              path: "/products/gaseous/mg-5112",
-              // submenu: [
-              //   {
-              //     title: "MG-5112 실린더(200bar)",
-              //     path: "/products/gaseous/mg-5112/cylinder-200bar",
-              //   },
-              //   {
-              //     title: "MG-5112 실린더(300bar)",
-              //     path: "/products/gaseous/mg-5112/cylinder-300bar",
-              //   },
-              //   {
-              //     title: "MG-5112 방출 헤드 밸브",
-              //     path: "/products/gaseous/mg-5112/discharge-head",
-              //   },
-              //   {
-              //     title: "MG-5112 컬렉터",
-              //     path: "/products/gaseous/mg-5112/collector",
-              //   },
-              // ],
-            },
-            {
-              title: "MG-227 시스템(HFC-227ea)",
-              path: "/products/gaseous/mg-227",
-              // submenu: [
-              //   {
-              //     title: "MG-227 실린더 어셈블리",
-              //     path: "/products/gaseous/mg-227/cylinder",
-              //   },
-              //   {
-              //     title: "MG-227 방출 밸브",
-              //     path: "/products/gaseous/mg-227/discharge-valve",
-              //   },
-              //   {
-              //     title: "MG-227 압력 게이지",
-              //     path: "/products/gaseous/mg-227/pressure-gauge",
-              //   },
-              //   {
-              //     title: "MG-227 호스 어셈블리",
-              //     path: "/products/gaseous/mg-227/hose-assembly",
-              //   },
-              // ],
-            },
-            {
-              title: "MG-125시스템(HFC-125)",
-              path: "/products/gaseous/mg-125",
-              // submenu: [
-              //   {
-              //     title: "MG-125 실린더(42L)",
-              //     path: "/products/gaseous/mg-125/cylinder-42l",
-              //   },
-              //   {
-              //     title: "MG-125 실린더(67L)",
-              //     path: "/products/gaseous/mg-125/cylinder-67l",
-              //   },
-              //   {
-              //     title: "MG-125 방출 밸브",
-              //     path: "/products/gaseous/mg-125/valve",
-              //   },
-              //   {
-              //     title: "MG-125 압력 스위치",
-              //     path: "/products/gaseous/mg-125/pressure-switch",
-              //   },
-              // ],
-            },
-          ],
-        },
-        {
-          title: "맞춤형 소방 솔루션",
-          path: "/products/custom",
-          submenu: [],
-        },
-        {
-          title: "설계 및 컨설팅",
-          path: "/products/consulting",
-          submenu: [],
-        },
+        { title: "스프링클러", path: "/products/sprinkler" },
+        { title: "후레시블 조인트", path: "/products/flexible-joint" },
+        { title: "소방밸브", path: "/products/valve" },
+        { title: "주거용 주방소화장치", path: "/products/kitchen-fire" },
+        { title: "소공간 자동소화장치", path: "/products/small-space" },
+        { title: "소화기 (클린 에이전트)", path: "/products/clean-agent" },
+        { title: "포소화설비 (폼시스템)", path: "/products/foam-system" },
       ],
     },
     {
-      title: "산업분야",
-      path: "/industry",
+      title: "자료실",
+      path: "/resources",
       submenu: [
-        { title: "제조업", path: "/industry/manufacturing" },
-        { title: "상업시설", path: "/industry/commercial" },
-        { title: "데이터센터", path: "/industry/datacenter" },
-        { title: "의료시설", path: "/industry/medical" },
+        { title: "일반자료", path: "/resources/general" },
+        { title: "제품/기술자료 및 MSDS", path: "/resources/technical" },
+        { title: "비포서비스(BS)", path: "/resources/before-service" },
+        { title: "소방관련법령 및 규정", path: "/resources/regulations" },
       ],
     },
-    { title: "공지사항", path: "/news", submenu: [] },
-    { title: "채용정보", path: "/careers", submenu: [] },
-    { title: "문의하기", path: "/contact", submenu: [] },
+    {
+      title: "고객지원",
+      path: "/support",
+      submenu: [],
+    },
   ];
 
   return (
