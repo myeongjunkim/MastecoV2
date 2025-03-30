@@ -504,7 +504,7 @@ export default function Home() {
           {/* 소방전문 제조기업 타이틀 추가 */}
           <div className="absolute -top-[260px] left-0 right-0 w-full flex justify-center">
             <h3
-              className="text-white text-2xl slide-up-element bg-red-700 px-6 py-2"
+              className="text-white text-2xl slide-up-element px-6 py-2"
               data-fade-index="3"
             >
               소방전문 제조기업
