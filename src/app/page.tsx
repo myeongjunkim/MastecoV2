@@ -21,7 +21,7 @@ export default function Home() {
 
     if (videoElement) {
       // 비디오 로드 후 1.5배속으로 설정
-      videoElement.playbackRate = 2;
+      videoElement.playbackRate = 1;
 
       // 비디오가 끝나기 1초 전에 페이드 아웃 시작
       const handleTimeUpdate = () => {
@@ -457,6 +457,8 @@ export default function Home() {
           margin-top: 0;
           padding-top: 0;
         }
+
+        /* Removed custom About section animations */
       `}</style>
 
       {/* 인트로 비디오 컴포넌트 */}
@@ -481,70 +483,105 @@ export default function Home() {
       <HeroSection />
       {/* </div> */}
 
-      {/* 2. 회사 설명 섹션 - 블루 박스 */}
-      <div className="relative py-12 bg-white">
-        {/* 상단 타이틀 - 왼쪽 정렬 */}
-        <div className="container mx-auto px-4 md:px-8 mb-8">
+      {/* 2. 회사 설명 섹션 */}
+      <div className="relative section-trigger bg-white">
+        {/* 빨간색 직사각형 영역 - 상단 */}
+        <div className="container mx-auto px-4 md:px-8 pt-12">
           <div className="flex items-center">
             <h2
-              className="text-blue-900 text-xl font-semibold slide-left-element"
+              className="text-black text-xl font-semibold slide-left-element"
               data-fade-index="0"
             >
               About MASTECO
-              <span className="inline-block ml-2 w-8 h-0.5 bg-blue-900"></span>
+              <span className="inline-block ml-2 w-8 h-0.5 bg-black"></span>
             </h2>
           </div>
         </div>
+        <div className="relative bg-red-700 h-72 mt-10"></div>
 
-        {/* 콘텐츠 영역 */}
-        <div className="relative">
-          {/* 왼쪽 이미지 & 이진수 배경 */}
+        {/* 경계선에 이미지 갤러리 배치 */}
+        <div className="relative z-10">
+          {/* 소방전문 제조기업 타이틀 추가 */}
+          <div className="absolute -top-[180px] left-0 right-0 w-full flex justify-center">
+            <h3
+              className="text-white text-xl slide-up-element bg-red-700 px-6 py-2"
+              data-fade-index="3"
+            >
+              소방전문 제조기업
+            </h3>
+          </div>
           <div
-            className="absolute inset-0 z-0 opacity-10 bg-repeat"
-            style={{
-              backgroundImage: `url('/images/bg-binary.png')`,
-              backgroundSize: "400px",
-            }}
-          ></div>
+            className="absolute -top-[120px] left-0 right-0 w-full flex justify-center slide-up-element"
+            data-fade-index="2"
+          >
+            <div className="grid grid-cols-6 w-full max-w-5xl">
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about1.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about2.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about3.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about4.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about5.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="col-span-1">
+                <img
+                  src="/images/solutions/solution7.png"
+                  alt="소방 설비"
+                  className="h-60 w-full object-cover shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
+        {/* 흰색 영역 - 하단 */}
+        <div className="bg-white pt-52 pb-20">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row items-stretch">
-              {/* 왼쪽 영역: 이미지 */}
-              <div
-                className="md:w-1/2 relative mb-10 md:mb-0 slide-left-element"
-                data-fade-index="1"
-              >
-                <div className="h-full flex items-center">
-                  <div className="relative w-full h-[400px] overflow-hidden">
-                    <img
-                      src="/images/solutions/solution4.png"
-                      alt="MASTECO 기술"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 오른쪽 영역: 파란색 배경의 텍스트 박스 */}
-              <div
-                className="md:w-1/2 bg-blue-900 text-white p-12 flex flex-col justify-center slide-right-element"
-                data-fade-index="2"
-              >
-                <h2 className="text-5xl font-bold mb-8">MASTECO is</h2>
-                <p className="text-lg mb-6 text-blue-50">
-                  화재로부터 안전한 세상을 만들기 위해 사회적 책임감을 바탕으로
-                  소방설비 산업에 기여하는 전문 기업입니다.
-                </p>
-                <p className="mb-6 text-blue-50">
-                  1982년부터 마스테코는 엄격한 산업 표준에 따라 자체 시설에서
-                  모든 제품을 설계, 생산, 테스트하며, 국내외 승인 기관의 인증을
-                  획득한 안전한 소방 솔루션을 제공합니다.
-                </p>
-                <p className="text-blue-50">
-                  소방 설비의 품질과 신뢰성에 집중하여 고객의 안전을 최우선으로
-                  생각합니다.
-                </p>
-              </div>
+            {/* 회사 설명 텍스트 - 흰색 영역 */}
+            <div className="max-w-2xl slide-up-element" data-fade-index="1">
+              <h2 className="text-5xl font-bold mb-8 text-gray-900">
+                MASTECO is
+              </h2>
+              <p className="text-lg mb-6 text-gray-700">
+                화재로부터 안전한 세상을 만들기 위해 사회적 책임감을 바탕으로
+                소방설비 산업에 기여하는 전문 기업입니다.
+              </p>
+              <p className="mb-6 text-gray-700">
+                1982년부터 마스테코는 엄격한 산업 표준에 따라 자체 시설에서 모든
+                제품을 설계, 생산, 테스트하며, 국내외 승인 기관의 인증을 획득한
+                안전한 소방 솔루션을 제공합니다.
+              </p>
+              <p className="text-gray-700">
+                소방 설비의 품질과 신뢰성에 집중하여 고객의 안전을 최우선으로
+                생각합니다.
+              </p>
             </div>
           </div>
         </div>
@@ -1278,13 +1315,6 @@ export default function Home() {
           </Link>
         </div>
       )}
-
-      <style jsx global>{`
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
     </div>
   );
 }

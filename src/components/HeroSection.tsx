@@ -15,8 +15,6 @@ export default function HeroSection() {
   // 배경 이미지 배열
   const backgroundImages = [
     "/images/solutions/masteco-building1.png",
-    "/images/solutions/masteco-building2.png",
-    "/images/solutions/masteco-building-bg.png",
     "/images/solutions/solution2.png",
     "/images/solutions/solution3.png",
   ];
@@ -34,14 +32,6 @@ export default function HeroSection() {
     {
       part1: "TRUSTED PROTECTION FOR LIFE",
       part2: "AND PROPERTY",
-    },
-    {
-      part1: "INNOVATING FOR A SAFER TOMORROW,",
-      part2: "CARRIED ON TODAY",
-    },
-    {
-      part1: "TOWARDS GLOBAL LEADER IN FIRE",
-      part2: "PROTECTION PRODUCTS",
     },
   ];
 
@@ -312,7 +302,7 @@ export default function HeroSection() {
         </div>
 
         {/* 어두운 오버레이 */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
 
         {/* 중앙 슬로건 및 회사 소개 */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center">
