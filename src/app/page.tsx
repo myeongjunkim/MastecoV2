@@ -480,7 +480,7 @@ export default function Home() {
 
       {/* 히어로 섹션 - 클라이언트 컴포넌트로 분리 */}
       {/* <div className="hero-fullscreen"> */}
-      <HeroSection />
+      <HeroSection showIntro={showIntro} />
       {/* </div> */}
 
       {/* 2. 회사 설명 섹션 */}
@@ -497,64 +497,50 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        <div className="relative bg-red-700 h-72 mt-10"></div>
+        <div className="relative bg-red-700 h-[400px] mt-10"></div>
 
         {/* 경계선에 이미지 갤러리 배치 */}
         <div className="relative z-10">
           {/* 소방전문 제조기업 타이틀 추가 */}
-          <div className="absolute -top-[180px] left-0 right-0 w-full flex justify-center">
+          <div className="absolute -top-[260px] left-0 right-0 w-full flex justify-center">
             <h3
-              className="text-white text-xl slide-up-element px-6 py-2"
+              className="text-white text-2xl slide-up-element bg-red-700 px-6 py-2"
               data-fade-index="3"
             >
               소방전문 제조기업
             </h3>
           </div>
           <div
-            className="absolute -top-[120px] left-0 right-0 w-full flex justify-center slide-up-element"
+            className="absolute -top-[200px] left-0 right-0 w-full flex justify-center slide-up-element"
             data-fade-index="2"
           >
-            <div className="grid grid-cols-6 w-full max-w-5xl">
-              <div className="col-span-1">
-                <img
-                  src="/images/about/about1.png"
-                  alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
-                />
-              </div>
+            <div className="grid grid-cols-4 w-full max-w-5xl">
               <div className="col-span-1">
                 <img
                   src="/images/about/about2.png"
                   alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
+                  className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
               <div className="col-span-1">
                 <img
                   src="/images/about/about3.png"
                   alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
+                  className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
               <div className="col-span-1">
                 <img
                   src="/images/about/about4.png"
                   alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
+                  className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
               <div className="col-span-1">
                 <img
                   src="/images/about/about5.png"
                   alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
-                />
-              </div>
-              <div className="col-span-1">
-                <img
-                  src="/images/solutions/solution7.png"
-                  alt="소방 설비"
-                  className="h-60 w-full object-cover shadow-lg"
+                  className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
             </div>
@@ -562,7 +548,7 @@ export default function Home() {
         </div>
 
         {/* 흰색 영역 - 하단 */}
-        <div className="bg-white pt-52 pb-20">
+        <div className="bg-white pt-72 pb-20">
           <div className="container mx-auto px-4 md:px-8">
             {/* 회사 설명 텍스트 - 흰색 영역 */}
             <div className="max-w-2xl slide-up-element" data-fade-index="1">

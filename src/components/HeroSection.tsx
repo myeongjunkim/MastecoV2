@@ -3,7 +3,11 @@
 import { CSSProperties, useState, useEffect, useRef, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  showIntro?: boolean;
+}
+
+export default function HeroSection({ showIntro = false }: HeroSectionProps) {
   // 현재 표시 중인 슬라이드 인덱스
   const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -124,8 +128,8 @@ export default function HeroSection() {
   useEffect(() => {
     let autoSlideInterval: NodeJS.Timeout | null = null;
 
-    // 트랜지션 중이 아닐 때만 자동 슬라이드 타이머 설정
-    if (!isTransitioning) {
+    // 트랜지션 중이 아니고, 인트로 비디오가 보이지 않을 때만 자동 슬라이드 타이머 설정
+    if (!isTransitioning && !showIntro) {
       autoSlideInterval = setInterval(() => {
         nextSlideCallback();
       }, 5000); // 10초 간격으로 다음 슬라이드로 전환
@@ -136,7 +140,7 @@ export default function HeroSection() {
         clearInterval(autoSlideInterval); // 컴포넌트 언마운트 시 인터벌 정리
       }
     };
-  }, [nextSlideCallback]); // 메모이제이션된 콜백만 의존성으로 사용
+  }, [nextSlideCallback, showIntro]); // showIntro를 의존성 배열에 추가
 
   // 애니메이션 스타일 정의
   const slideInFromLeft: CSSProperties = {
@@ -294,7 +298,9 @@ export default function HeroSection() {
                 className="carousel-slide"
                 style={{
                   backgroundImage: `url('${image}')`,
-                  ...(index === currentSlide + 1 ? zoomBackground : {}),
+                  ...(index === currentSlide + 1 && !showIntro
+                    ? zoomBackground
+                    : {}),
                 }}
               ></div>
             ))}
@@ -313,7 +319,11 @@ export default function HeroSection() {
             <h1 className="text-white text-3xl md:text-4xl lg:text-7xl font-extrabold drop-shadow-lg mb-2 w-full overflow-hidden">
               <span
                 className="inline-block w-full"
-                style={isTransitioning ? { opacity: 0 } : slideInFromLeft}
+                style={
+                  isTransitioning || showIntro
+                    ? { opacity: 0 }
+                    : slideInFromLeft
+                }
               >
                 {allSlogans[currentSlide + 1].part1}
               </span>
@@ -321,7 +331,11 @@ export default function HeroSection() {
             <h1 className="text-white text-3xl md:text-4xl lg:text-7xl font-extrabold drop-shadow-lg w-full overflow-hidden">
               <span
                 className="inline-block w-full"
-                style={isTransitioning ? { opacity: 0 } : slideInFromRight}
+                style={
+                  isTransitioning || showIntro
+                    ? { opacity: 0 }
+                    : slideInFromRight
+                }
               >
                 {allSlogans[currentSlide + 1].part2}
               </span>
@@ -330,7 +344,7 @@ export default function HeroSection() {
           <p
             key={`intro-${animationKey}`}
             className="text-white text-lg md:text-xl max-w-2xl mt-2 drop-shadow-md leading-relaxed tracking-normal md:tracking-wide text-center mx-auto"
-            style={fadeInUpDelay2}
+            style={showIntro ? { opacity: 0 } : fadeInUpDelay2}
           >
             {/* 모바일 뷰용 (세 줄) */}
             <span className="inline-block sm:hidden">
