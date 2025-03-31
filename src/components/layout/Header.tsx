@@ -260,11 +260,11 @@ const Header = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center focus:outline-none">
           <Image
-            src="/images/logos/image.png"
+            src="/images/logos/masteco-logo-origin.png"
             alt="MASTECO Logo"
-            width={150}
+            width={200}
             height={40}
-            className="h-6 w-auto"
+            className="w-56"
           />
         </Link>
 
