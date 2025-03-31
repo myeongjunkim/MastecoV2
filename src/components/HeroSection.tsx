@@ -18,7 +18,7 @@ export default function HeroSection({ showIntro = false }: HeroSectionProps) {
 
   // 배경 이미지 배열
   const backgroundImages = [
-    "/images/solutions/masteco-building1.png",
+    "/images/solutions/masteco-building.png",
     "/images/solutions/solution2.png",
     "/images/solutions/solution3.png",
   ];

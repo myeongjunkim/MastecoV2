@@ -502,9 +502,9 @@ export default function Home() {
         {/* 경계선에 이미지 갤러리 배치 */}
         <div className="relative z-10">
           {/* 소방전문 제조기업 타이틀 추가 */}
-          <div className="absolute -top-[260px] left-0 right-0 w-full flex justify-center">
+          <div className="absolute -top-[280px] left-0 right-0 w-full flex justify-center">
             <h3
-              className="text-white text-2xl slide-up-element px-6 py-2 "
+              className="text-white text-3xl font-bold slide-up-element px-6 py-2 "
               data-fade-index="3"
             >
               소방전문 제조기업
@@ -514,7 +514,14 @@ export default function Home() {
             className="absolute -top-[200px] left-0 right-0 w-full container mx-auto px-4 md:px-8 flex justify-center slide-up-element"
             data-fade-index="2"
           >
-            <div className="grid grid-cols-4 w-full">
+            <div className="grid grid-cols-2 lg:grid-cols-4 w-full">
+              <div className="col-span-1">
+                <img
+                  src="/images/about/about1.png"
+                  alt="소방 설비"
+                  className="h-96 w-full object-cover shadow-lg"
+                />
+              </div>
               <div className="col-span-1">
                 <img
                   src="/images/about/about2.png"
@@ -522,23 +529,16 @@ export default function Home() {
                   className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
-              <div className="col-span-1">
+              <div className="hidden lg:block col-span-1">
                 <img
                   src="/images/about/about3.png"
                   alt="소방 설비"
                   className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
-              <div className="col-span-1">
+              <div className="hidden lg:block col-span-1">
                 <img
                   src="/images/about/about4.png"
-                  alt="소방 설비"
-                  className="h-96 w-full object-cover shadow-lg"
-                />
-              </div>
-              <div className="col-span-1">
-                <img
-                  src="/images/about/about5.png"
                   alt="소방 설비"
                   className="h-96 w-full object-cover shadow-lg"
                 />
@@ -559,12 +559,12 @@ export default function Home() {
                 화재로부터 안전한 세상을 만들기 위해 사회적 책임감을 바탕으로
                 소방설비 산업에 기여하는 전문 기업입니다.
               </p>
-              <p className="mb-6 text-gray-700">
+              <p className="text-lg mb-6 text-gray-700">
                 1982년부터 마스테코는 엄격한 산업 표준에 따라 자체 시설에서 모든
                 제품을 설계, 생산, 테스트하며, 국내외 승인 기관의 인증을 획득한
                 안전한 소방 솔루션을 제공합니다.
               </p>
-              <p className="text-gray-700">
+              <p className="text-lg mb-6 text-gray-700">
                 소방 설비의 품질과 신뢰성에 집중하여 고객의 안전을 최우선으로
                 생각합니다.
               </p>
@@ -575,7 +575,7 @@ export default function Home() {
 
       {/* 3. 바둑판식 이미지와 솔루션 설명 섹션 */}
       <div className="relative py-20 bg-gray-50 section-trigger">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div
             className="mb-16 text-center fade-in-element"
             data-fade-index="0"
@@ -593,21 +593,24 @@ export default function Home() {
             {/* 3-1. 첫 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 slide-up-element" data-fade-index="1">
-                  <div className="h-[400px] relative overflow-hidden group">
+                <div
+                  className="md:w-1/2 aspect-square slide-up-element"
+                  data-fade-index="1"
+                >
+                  <div className="h-full w-full relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution8.png')`,
+                        backgroundImage: `url('/images/solutions/solution-new-1.png')`,
                       }}
                     ></div>
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-right-element slide-right-element-solution"
+                  className="md:w-1/2 flex items-center bg-white slide-up-element"
                   data-fade-index="2"
                 >
-                  <div className="p-8 md:p-16">
+                  <div className="p-8 pb-20 md:p-16">
                     <h2 className="text-gray-900 text-3xl mb-4">
                       수계 소화설비
                     </h2>
@@ -635,21 +638,24 @@ export default function Home() {
             {/* 3-2. 두 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 slide-up-element" data-fade-index="3">
-                  <div className="h-[400px] relative overflow-hidden group">
+                <div
+                  className="md:w-1/2 aspect-square slide-up-element"
+                  data-fade-index="3"
+                >
+                  <div className="h-full w-full relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution6.png')`,
+                        backgroundImage: `url('/images/solutions/solution-new-2.png')`,
                       }}
                     ></div>
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-left-element slide-left-element-solution"
+                  className="md:w-1/2 flex items-center bg-white slide-up-element"
                   data-fade-index="4"
                 >
-                  <div className="p-8 md:p-16">
+                  <div className="p-8 pb-20 md:p-16">
                     <h2 className="text-gray-900 text-3xl mb-4">
                       가스계 소화설비
                     </h2>
@@ -677,21 +683,24 @@ export default function Home() {
             {/* 3-3. 세 번째 솔루션 섹션 */}
             <div>
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 slide-up-element" data-fade-index="5">
-                  <div className="h-[400px] relative overflow-hidden group">
+                <div
+                  className="md:w-1/2 aspect-square slide-up-element"
+                  data-fade-index="5"
+                >
+                  <div className="h-full w-full relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution7.png')`,
+                        backgroundImage: `url('/images/solutions/solution-new-3.png')`,
                       }}
                     ></div>
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-right-element slide-right-element-solution"
+                  className="md:w-1/2 flex items-center bg-white slide-up-element"
                   data-fade-index="6"
                 >
-                  <div className="p-8 md:p-16">
+                  <div className="p-8 pb-20 md:p-16">
                     <h2 className="text-gray-900 text-3xl mb-4">
                       맞춤형 소방 솔루션
                     </h2>
@@ -718,21 +727,24 @@ export default function Home() {
             {/* 3-4. 네 번째 솔루션 섹션 (추가) */}
             <div>
               <div className="flex flex-col md:flex-row-reverse">
-                <div className="md:w-1/2 slide-up-element" data-fade-index="7">
-                  <div className="h-[400px] relative overflow-hidden group">
+                <div
+                  className="md:w-1/2 aspect-square slide-up-element"
+                  data-fade-index="7"
+                >
+                  <div className="h-full w-full relative overflow-hidden group">
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/industry/Visual 04.png')`,
+                        backgroundImage: `url('/images/solutions/solution-new-4.png')`,
                       }}
                     ></div>
                   </div>
                 </div>
                 <div
-                  className="md:w-1/2 flex items-center bg-white slide-left-element slide-left-element-solution"
+                  className="md:w-1/2  flex items-center bg-white slide-up-element"
                   data-fade-index="8"
                 >
-                  <div className="p-8 md:p-16">
+                  <div className="p-8 pb-20 md:p-16">
                     <h2 className="text-gray-900 text-3xl mb-4">
                       설계 및 컨설팅
                     </h2>
