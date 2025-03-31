@@ -511,10 +511,10 @@ export default function Home() {
             </h3>
           </div>
           <div
-            className="absolute -top-[200px] left-0 right-0 w-full flex justify-center slide-up-element"
+            className="absolute -top-[200px] left-0 right-0 w-full container mx-auto px-4 md:px-8 flex justify-center slide-up-element"
             data-fade-index="2"
           >
-            <div className="grid grid-cols-4 w-full max-w-5xl">
+            <div className="grid grid-cols-4 w-full">
               <div className="col-span-1">
                 <img
                   src="/images/about/about2.png"

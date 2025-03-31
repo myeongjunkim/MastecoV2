@@ -34,8 +34,8 @@ export default function HeroSection({ showIntro = false }: HeroSectionProps) {
       part2: "PROTECTION PRODUCTS",
     },
     {
-      part1: "TRUSTED PROTECTION FOR LIFE",
-      part2: "AND PROPERTY",
+      part1: "IN TIMES OF CRISIS, MASTECO WILL",
+      part2: "BE A TRUSTED NAME",
     },
   ];
 
@@ -308,7 +308,7 @@ export default function HeroSection({ showIntro = false }: HeroSectionProps) {
         </div>
 
         {/* 어두운 오버레이 */}
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-20"></div>
 
         {/* 중앙 슬로건 및 회사 소개 */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center">
