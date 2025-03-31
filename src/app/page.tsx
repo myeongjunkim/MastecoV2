@@ -514,7 +514,7 @@ export default function Home() {
             className="absolute -top-[200px] left-0 right-0 w-full container mx-auto px-4 md:px-8 flex justify-center slide-up-element"
             data-fade-index="2"
           >
-            <div className="grid grid-cols-2 lg:grid-cols-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
               <div className="col-span-1">
                 <img
                   src="/images/about/about1.png"
@@ -522,7 +522,7 @@ export default function Home() {
                   className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-1 hidden md:block">
                 <img
                   src="/images/about/about2.png"
                   alt="소방 설비"
@@ -774,7 +774,7 @@ export default function Home() {
 
       {/* 4. 산업 분야 설명 섹션 */}
       <div className="relative py-20 bg-white section-trigger">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-16 text-center">
             <h2
               className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
@@ -969,7 +969,7 @@ export default function Home() {
 
       {/* 6. 공지사항 섹션 */}
       <div className="relative py-20 bg-gray-50 section-trigger">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-16 text-center">
             <h2
               className="text-gray-700 text-sm font-light uppercase tracking-wider mb-2 fade-in-element"
