@@ -514,7 +514,7 @@ export default function Home() {
             className="absolute -top-[200px] left-0 right-0 w-full container mx-auto px-4 md:px-8 flex justify-center slide-up-element"
             data-fade-index="2"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
+            <div className="grid grid-cols-2 lg:grid-cols-4 w-full">
               <div className="col-span-1">
                 <img
                   src="/images/about/about1.png"
@@ -522,7 +522,7 @@ export default function Home() {
                   className="h-96 w-full object-cover shadow-lg"
                 />
               </div>
-              <div className="col-span-1 hidden md:block">
+              <div className="col-span-1 ">
                 <img
                   src="/images/about/about2.png"
                   alt="소방 설비"
