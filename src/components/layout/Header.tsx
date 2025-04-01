@@ -128,7 +128,7 @@ const Header = () => {
           bottom: -3px;
           left: 50%;
           width: 0;
-          height: 2px;
+          height: 3px;
           background-color: #d23c3c;
           transition: all 0.3s ease;
           transform: translateX(-50%);
