@@ -146,7 +146,7 @@ const Header = () => {
             alt="MASTECO Logo"
             width={200}
             height={40}
-            className="w-56"
+            className="w-56 pb-4"
           />
         </Link>
 
@@ -218,7 +218,7 @@ const Header = () => {
               : "bg-blue-900 bg-opacity-90 text-white"
           } shadow-lg overflow-y-auto`}
         >
-          <div className="container mx-auto px-4 py-6">
+          <div className="container mx-auto p-4">
             <div className="flex justify-between items-center pb-4 ">
               <Link href="/" onClick={() => setIsMenuOpen(false)}>
                 <Image
@@ -226,6 +226,7 @@ const Header = () => {
                   alt="MASTECO Logo"
                   width={180}
                   height={40}
+                  className="pb-3"
                 />
               </Link>
               <button
