@@ -155,7 +155,7 @@ const Header = () => {
             <div key={index} className="relative group">
               <Link
                 href={item.path}
-                className={`text-lg font-medium flex items-center cursor-pointer ${
+                className={`text-lg font-bold flex items-center cursor-pointer ${
                   scrolled
                     ? "text-blue-900 hover:text-[rgba(255,100,100,0.95)]"
                     : "text-white hover:text-[rgba(255,100,100,0.95)]"
