@@ -228,6 +228,12 @@ const Header = () => {
                   height={40}
                 />
               </Link>
+              <button
+                className={`${scrolled ? "text-blue-900" : "text-white"} ml-2`}
+                onClick={toggleMenu}
+              >
+                <FaTimes size={24} />
+              </button>
             </div>
 
             <nav className="flex flex-col space-y-6">
