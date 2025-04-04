@@ -69,7 +69,6 @@ const Header = () => {
         { title: "주거용 주방소화장치", path: "/products/kitchen-fire" },
         { title: "소공간 자동소화장치", path: "/products/small-space" },
         { title: "소화기 (클린 에이전트)", path: "/products/clean-agent" },
-        { title: "포소화설비 (폼시스템)", path: "/products/foam-system" },
       ],
     },
     {
@@ -91,10 +90,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[1001] transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-[1001] transition-all duration-300 pt-1 ${
         scrolled
-          ? "bg-white text-blue-900 shadow-md py-3"
-          : "bg-white/10 text-white py-5"
+          ? "bg-white text-blue-900 shadow-md"
+          : "bg-white/10 text-white "
       }`}
     >
       <style jsx global>{`
@@ -125,7 +124,7 @@ const Header = () => {
         nav a::after {
           content: "";
           position: absolute;
-          bottom: -3px;
+          bottom: -7px;
           left: 50%;
           width: 0;
           height: 3px;
@@ -168,7 +167,7 @@ const Header = () => {
               </Link>
 
               {item.submenu.length > 0 && (
-                <div className="absolute left-0 top-full pt-5 min-w-[12rem] w-fit whitespace-nowrap hidden group-hover:block">
+                <div className="absolute left-0 top-full pt-7 min-w-[12rem] w-fit whitespace-nowrap hidden group-hover:block">
                   <div className="py-2 bg-[rgba(210,60,60,0.9)] text-white rounded-md shadow-lg">
                     {item.submenu.map((subitem, subindex) => (
                       <div key={subindex} className="relative group/sub">
