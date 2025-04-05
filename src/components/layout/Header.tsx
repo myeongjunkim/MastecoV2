@@ -117,7 +117,8 @@ const Header = () => {
         }
 
         /* 링크 호버 애니메이션 - 가운데에서 양쪽으로 확장되는 보더 */
-        nav a {
+        nav a,
+        .logo-link {
           position: relative;
         }
 
@@ -133,20 +134,42 @@ const Header = () => {
           transform: translateX(-50%);
         }
 
+        .logo-link::after {
+          content: "";
+          position: absolute;
+          bottom: 14px; /* 4 tailwind spacing units */
+          left: 50%;
+          width: 0;
+          height: 3px;
+          background-color: #d23c3c;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+
         nav a:hover::after {
           width: 100%;
+        }
+
+        .logo-link:hover::after {
+          width: 95%;
         }
       `}</style>
 
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center focus:outline-none">
-          <Image
-            src="/images/logos/masteco-logo-origin.png"
-            alt="MASTECO Logo"
-            width={200}
-            height={40}
-            className="w-56 pb-4"
-          />
+        <Link
+          href="/"
+          className="flex items-center focus:outline-none logo-link"
+        >
+          <div className="relative">
+            <Image
+              src="/images/logos/masteco-logo-origin.png"
+              alt="MASTECO Logo"
+              width={200}
+              height={40}
+              className="w-56 mb-4"
+            />
+            <div className="logo-hover-line "></div>
+          </div>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
