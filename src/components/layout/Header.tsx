@@ -167,7 +167,7 @@ const Header = () => {
               </Link>
 
               {item.submenu.length > 0 && (
-                <div className="absolute left-0 top-full pt-7 min-w-[12rem] w-fit whitespace-nowrap hidden group-hover:block">
+                <div className="absolute left-0 top-full pt-[22px] min-w-[12rem] w-fit whitespace-nowrap hidden group-hover:block">
                   <div className="py-2 bg-[rgba(210,60,60,0.9)] text-white rounded-md shadow-lg">
                     {item.submenu.map((subitem, subindex) => (
                       <div key={subindex} className="relative group/sub">
