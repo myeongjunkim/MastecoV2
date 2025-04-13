@@ -501,56 +501,77 @@ export default function Home() {
 
         {/* 경계선에 이미지 갤러리 배치 */}
         <div className="relative z-10">
-          {/* 소방전문 제조기업 타이틀 추가 */}
-          <div className="absolute -top-[280px] left-0 right-0 w-full flex justify-center">
-            <h3
-              className="text-white text-3xl font-bold slide-up-element px-6 py-2 "
-              data-fade-index="3"
-            >
-              소방전문 제조기업
-            </h3>
-          </div>
           <div
-            className="absolute -top-[200px] left-0 right-0 w-full container mx-auto px-4 md:px-8 flex justify-center slide-up-element"
+            className="-mt-60 w-full container mx-auto px-4 md:px-8 flex flex-col justify-center "
             data-fade-index="2"
           >
-            <div className="grid grid-cols-2 lg:grid-cols-4 w-full">
-              <div className="col-span-1">
+            <div className=" w-full flex justify-center">
+              <h3
+                className="text-white text-3xl font-bold slide-up-element px-6 mb-10"
+                data-fade-index="3"
+              >
+                소방전문 제조기업
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-4 w-full slide-up-element">
+              <div className="col-span-1 ">
                 <img
                   src="/images/about/about1.png"
                   alt="소방 설비"
-                  className="h-96 w-full object-cover shadow-lg"
+                  className="h-96  aspect-square shadow-lg"
                 />
               </div>
               <div className="col-span-1 ">
                 <img
                   src="/images/about/about2.png"
                   alt="소방 설비"
-                  className="h-96 w-full object-cover shadow-lg"
+                  className="h-96  aspect-square shadow-lg"
                 />
               </div>
-              <div className="hidden lg:block col-span-1">
+              <div className="col-span-1 ">
                 <img
                   src="/images/about/about3.png"
                   alt="소방 설비"
-                  className="h-96 w-full object-cover shadow-lg"
+                  className="h-96  aspect-square shadow-lg"
                 />
               </div>
-              <div className="hidden lg:block col-span-1">
+              <div className="col-span-1 ">
                 <img
                   src="/images/about/about4.png"
                   alt="소방 설비"
-                  className="h-96 w-full object-cover shadow-lg"
+                  className="h-96  aspect-square shadow-lg"
                 />
+              </div>
+            </div>
+            <div className="bg-white pt-20 pb-20">
+              <div className="container mx-auto">
+                {/* 회사 설명 텍스트 - 흰색 영역 */}
+                <div className="max-w-2xl slide-up-element" data-fade-index="1">
+                  <h2 className="text-5xl font-bold mb-8 text-gray-900">
+                    MASTECO is
+                  </h2>
+                  <p className="text-lg mb-6 text-gray-700">
+                    화재로부터 안전한 세상을 만들기 위해 사회적 책임감을
+                    바탕으로 소방설비 산업에 기여하는 전문 기업입니다.
+                  </p>
+                  <p className="text-lg mb-6 text-gray-700">
+                    1982년부터 마스테코는 엄격한 산업 표준에 따라 자체 시설에서
+                    모든 제품을 설계, 생산, 테스트하며, 국내외 승인 기관의
+                    인증을 획득한 안전한 소방 솔루션을 제공합니다.
+                  </p>
+                  <p className="text-lg mb-6 text-gray-700">
+                    소방 설비의 품질과 신뢰성에 집중하여 고객의 안전을
+                    최우선으로 생각합니다.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* 흰색 영역 - 하단 */}
-        <div className="bg-white pt-72 pb-20">
+        {/* <div className="bg-white pt-72 pb-20">
           <div className="container mx-auto px-4 md:px-8">
-            {/* 회사 설명 텍스트 - 흰색 영역 */}
             <div className="max-w-2xl slide-up-element" data-fade-index="1">
               <h2 className="text-5xl font-bold mb-8 text-gray-900">
                 MASTECO is
@@ -570,7 +591,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* 3. 바둑판식 이미지와 솔루션 설명 섹션 */}
