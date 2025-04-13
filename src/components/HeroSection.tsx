@@ -17,11 +17,7 @@ export default function HeroSection({ showIntro = false }: HeroSectionProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // 배경 이미지 배열
-  const backgroundImages = [
-    "/images/hero/hero1.png",
-    "/images/hero/hero2.png",
-    "/images/hero/hero3.png",
-  ];
+  const backgroundImages = ["/images/hero/hero1.png", "/images/hero/hero2.png"];
 
   // 슬로건 텍스트 배열 추가
   const sloganTexts = [
