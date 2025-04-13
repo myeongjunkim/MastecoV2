@@ -18,9 +18,9 @@ export default function HeroSection({ showIntro = false }: HeroSectionProps) {
 
   // 배경 이미지 배열
   const backgroundImages = [
-    "/images/solutions/masteco-building.png",
-    "/images/solutions/solution2.png",
-    "/images/solutions/solution3.png",
+    "/images/hero/hero1.png",
+    "/images/hero/hero2.png",
+    "/images/hero/hero3.png",
   ];
 
   // 슬로건 텍스트 배열 추가

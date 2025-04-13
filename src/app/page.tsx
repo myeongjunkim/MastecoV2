@@ -601,7 +601,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution-new-1.png')`,
+                        backgroundImage: `url('/images/solution/solution1.png')`,
                       }}
                     ></div>
                   </div>
@@ -646,7 +646,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution-new-2.png')`,
+                        backgroundImage: `url('/images/solution/solution2.png')`,
                       }}
                     ></div>
                   </div>
@@ -691,7 +691,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution-new-3.png')`,
+                        backgroundImage: `url('/images/solution/solution3.png')`,
                       }}
                     ></div>
                   </div>
@@ -735,7 +735,7 @@ export default function Home() {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 transform group-hover:scale-110"
                       style={{
-                        backgroundImage: `url('/images/solutions/solution-new-4.png')`,
+                        backgroundImage: `url('/images/solution/solution4.png')`,
                       }}
                     ></div>
                   </div>
